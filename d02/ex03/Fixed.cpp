@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:35:52 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/01 16:26:47 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/01 17:02:11 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,11 @@ Fixed & Fixed::operator-( void ) {
 	return (*this);
 }
 
+bool Fixed::operator!( void ) {
+	if (!this->_val)
+		return (true);
+	return (false);
+}
 
 bool Fixed::operator>( Fixed const & rhs ) const {
 	if (this->toFloat() > rhs.toFloat())

@@ -33,7 +33,7 @@ int main( void ) {
 	system(Point(0,0), Point(1,1), Point(2,0), Point(0,0));
 	system(Point(0,0), Point(1,1), Point(2,0), Point(1,-0.1));
 	system(Point(0,0), Point(1,1), Point(2,0), Point(1,0.1));
-	system(Point(0,0), Point(1,1), Point(2,0), Point(1,-0.01));
-	system(Point(0,0), Point(1,1), Point(2,0), Point(1,-0.001));
+	system(Point(0,0), Point(1,1), Point(2,0), Point(1,0.01));
+	system(Point(0,0), Point(1,1), Point(2,0), Point(1,0.001));
 	return 0;
 }

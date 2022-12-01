@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 16:08:37 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/01 16:44:57 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:59:44 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ bool bsp( Point const a, Point const b, Point const c, Point const point) {
 		std::cout << "Input valid triangle" << std::endl;
 		return (false);
 	}
+	if (Area1 == 0 || Area1 == 0 || Area3 == 0)
+		return (false);
 	if (Area1 + Area2 + Area3 > TotalArea)
 		return (false);
 	return (true);

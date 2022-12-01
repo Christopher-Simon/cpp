@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:35:19 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/01 16:25:42 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/01 17:02:13 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ class Fixed
 		Fixed & operator--( void );
 		Fixed operator--( int );
 		Fixed & operator-( void );
+		bool operator!( void );
 
 		bool operator>( Fixed const & rhs ) const;
 		bool operator<( Fixed const & rhs ) const;
