@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:35:52 by chsimon           #+#    #+#             */
-/*   Updated: 2022/11/29 19:23:05 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/01 11:21:32 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Fixed::Fixed(int const raw){
 
 Fixed::Fixed(float const raw){
 	std::cout << "Double constructor called" << std::endl;
-	this->_val = raw * (1 << 8);
+	this->_val = round(raw * (1 << 8));
 }
 
 Fixed::~Fixed() {
@@ -46,7 +46,7 @@ void Fixed::setRawBits( int const raw ) {
 }
 
 float Fixed::toFloat( void ) const {
-	return ((float)this->_val / (float)(1<<8));
+	return ((float)getRawBits() / (float)(1<<8));
 }
 
 int	Fixed::toInt( void ) const {
