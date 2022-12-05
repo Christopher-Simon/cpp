@@ -6,11 +6,18 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:16:57 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/02 17:53:16 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/05 14:54:14 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+
+ClapTrap::ClapTrap():_name("Default"),
+_HitPoints(10),
+_EnergyPoints(10),
+_AttackDamage(0) {
+	std::cout << "ClapTrap " << this->getName() << " created." << std::endl;
+}
 
 ClapTrap::ClapTrap(const std::string name):_name(name),
 _HitPoints(10),
@@ -23,27 +30,46 @@ ClapTrap::~ClapTrap() {
 	std::cout << "ClapTrap " << this->getName() << " destroyed." << std::endl;	
 }
 
+ClapTrap::ClapTrap(ClapTrap const & raw) { 
+	*this = raw;
+}
+
+ClapTrap & ClapTrap::operator=(ClapTrap const & rhs) { 
+	if (this != &rhs)
+	{
+		this->_name = rhs._name;
+		this->_HitPoints = rhs._HitPoints;
+		this->_EnergyPoints = rhs._EnergyPoints;
+		this->_AttackDamage = rhs._AttackDamage;
+	}
+	return (*this);
+}
+
 std::string ClapTrap::getName() const {
 	return (this->_name);
 }
 
-
 int ClapTrap::getHitPoints( void ) const {
 	return (this->_HitPoints);
 }
+
 int ClapTrap::getEnergyPoints( void ) const {
 	return (this->_EnergyPoints);
 }
 
-void	lowEnergyPoint(ClapTrap & C){
+int ClapTrap::getAttackDamage( void ) const {
+	return (this->_AttackDamage);
+}
+
+static void	lowEnergyPoint(ClapTrap & C){
 	std::cout << "ClapTrap " << C.getName() << " doesn't have enough energy points." << std::endl;
 }
 
-void	death(ClapTrap	& C){
+static void	death(ClapTrap	& C){
 	std::cout << "ClapTrap " << C.getName() << " doesn't have enough hit points." << std::endl;
 }
 
-void	ActionError(ClapTrap & C) {
+static void	ActionError(ClapTrap & C) {
 	if (!C.getHitPoints())
 		death(C);
 	else
@@ -78,4 +104,12 @@ void ClapTrap::beRepaired(unsigned int amount){
 	}
 	else
 		lowEnergyPoint(*this);
+}
+
+std::ostream & operator<<(std :: ostream & o, ClapTrap const & rhs ) {
+	o << rhs.getName() << std::endl
+	<< rhs.getHitPoints() << std::endl
+	<< rhs.getEnergyPoints() << std::endl
+	<< rhs.getAttackDamage();
+	return (o);
 }

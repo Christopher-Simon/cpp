@@ -1,40 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 17:08:25 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/02 15:33:11 by chsimon          ###   ########.fr       */
+/*   Created: 2022/12/05 11:29:20 by chsimon           #+#    #+#             */
+/*   Updated: 2022/12/05 18:35:49 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef DIANONDTRAP_HPP
+# define DIANONDTRAP_HPP
 
-# include <string>
-# include <iostream>
+# include "FragTrap.hpp"
+# include "ScavTrap.hpp"
 
-class	ClapTrap {
-
+class DiamondTrap : public ScavTrap, public FragTrap 
+{
 	public:
-		ClapTrap(const std::string name);
-		~ClapTrap();
-		
+		DiamondTrap();
+		DiamondTrap(const std::string name);
+		~DiamondTrap();
+
+		DiamondTrap(DiamondTrap const & rhs);
+		DiamondTrap & operator=(DiamondTrap const & rhs);
+
+		void attack(const std::string & target);
+
 		std::string getName( void ) const;
 		int getHitPoints( void ) const;
 		int getEnergyPoints( void ) const;
+		int getAttackDamage( void ) const;
 
-		void attack(const std::string & target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+		void whoAmI();
 
 	private:
+		int	_tmp;
 		std::string	_name;
-		int		_HitPoints;
-		int		_EnergyPoints;
-		int		_AttackDamage;
 };
+
+std::ostream & operator<<(std :: ostream & o, DiamondTrap const & rhs );
 
 #endif
