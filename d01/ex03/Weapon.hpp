@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:54:01 by chsimon           #+#    #+#             */
-/*   Updated: 2022/11/24 18:10:51 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/07 12:37:23 by christopher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
 	Weapon(std::string input);
 	~Weapon(void);
 
-	const std::string	getType(void);
+	const std::string	getType(void) const;
 	void	setType(std::string input);
 
 private:

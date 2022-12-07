@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:19:21 by chsimon           #+#    #+#             */
-/*   Updated: 2022/11/28 17:04:11 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/07 13:11:45 by christopher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,26 @@
 
 std::string	homeMadeSed(std::string	line, std::string find, std::string replace) {
 	std::size_t	found;
+	std::size_t	i(0);
 	std::string	beg;
 	std::string	end;
+	std::string	res;
 
 	while (1) {
 		found = line.find(find);
-		if (found == std::string::npos)
-			return (line);
+		if (found == std::string::npos){
+			if (i)
+				return (res += line, res);
+			else
+				return (line);
+		}
 		else {
 			beg = line.substr(0, found);
-			end = line.substr(found + find.length());
-			line = beg;
-			line += replace;
-			line += end;
+			line = line.substr(found + find.length());
+			res += beg;
+			res += replace;
 		}
+		i++;
 	}
 }
 

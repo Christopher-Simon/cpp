@@ -3,12 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:59:42 by chsimon           #+#    #+#             */
-/*   Updated: 2022/11/28 17:50:37 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/07 13:26:02 by christopher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef HARL_HPP
+# define HARL_HPP
 
 #include <iostream>
 
@@ -25,3 +28,5 @@ class Harl
 		void	warning( void );
 		void	error( void );
 };
+
+#endif

@@ -1,7 +1,7 @@
 #include "HumanB.hpp"
 
 HumanB::HumanB( std::string name ): name(name), weapon(NULL) {
-	std::cout << "player :" << this->name << "; Weapon :" << "His tiny hands" << std::endl;
+	std::cout << "player : " << this->name << "; Weapon : " << "His tiny hands" << std::endl;
 	return ;	
 }
 

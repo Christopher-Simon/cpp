@@ -10,10 +10,7 @@ int	main(int argc, char **argv)
 	for (int i (1); argv[i]; i++)
 	{
 		for (int j (0); argv[i][j]; j++)
-		{
-			if (argv[i][j] >= 'a' && argv[i][j] <= 'z')
-				argv[i][j] -= 32;
-		}
+			argv[i][j] = std::toupper(argv[i][j]);
 		std::cout << argv[i];
 	}
 	std::cout << std::endl;

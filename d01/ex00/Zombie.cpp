@@ -1,5 +1,9 @@
 #include "Zombie.hpp"
 
+Zombie::Zombie( void ):name("Zomb") {
+	return ;	
+}
+
 Zombie::Zombie(std::string input):name(input) {
 	return ;	
 }

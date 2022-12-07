@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:56:16 by chsimon           #+#    #+#             */
-/*   Updated: 2022/11/24 19:01:41 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/07 12:56:01 by christopher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,49 @@
 #include "HumanB.hpp"
 #include "Weapon.hpp"
 
-int	main(void){
-	Weapon	club("Club");
-	HumanA	bob("bob", club);
-	HumanB	jon("Jon");
+#define GREEN "\033[32m"
+#define RED "\033[31m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define PURPLE "\033[35m"
+#define RESET "\033[0m"
 
-	bob.attack();
-	club.setType("zizi");
-	bob.attack();
-	jon.attack();
-	jon.setWeapon(club);
-	jon.attack();
-	// {
-	// 	Weapon club = Weapon("crude spiked club");
-	// 	HumanA bob("Bob", club);
-	// 	bob.attack();
-	// 	club.setType("some other type of club");
-	// 	bob.attack();
-	// }
-	// std::cout << std::endl;
-	// {
-	// 	Weapon club = Weapon("crude spiked club");
-	// 	HumanB jim("Jim");
-	// 	jim.setWeapon(club);
-	// 	jim.attack();
-	// 	club.setType("some other type of club");
-	// 	jim.attack();
-	// }
+int	main(void){
+	std::cout << RED << "______Test 1______" << RESET << std::endl;
+	std::cout << std::endl;
+	{
+		Weapon	club("Club");
+		HumanA	Bob("Bob", club);
+		HumanB	jon("Jon");
+
+		std::cout << GREEN << "Human A (Weapon REF)" << RESET << std::endl;
+		Bob.attack();
+		club.setType("Xavier Niel");
+		Bob.attack();
+		std::cout << GREEN << "Human B (Weapon PTR)" << RESET << std::endl;
+		jon.attack();
+		jon.setWeapon(club);
+		jon.attack();
+	}
+	std::cout << std::endl << RED << "______Test 2______ Autre écriture" << RESET << std::endl;
+	std::cout << std::endl;
+	{
+		Weapon club = Weapon("crude spiked club");
+		HumanA bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
+	}
+	std::cout << std::endl << RED << "______Test 3______ Del Weapon" << RESET << std::endl;
+	std::cout << std::endl;
+	{
+		Weapon *club = new Weapon("crude spiked club");
+		HumanB bob("Bob");
+		bob.attack();
+		club->setType("some other type of club");
+		bob.attack();
+		delete club;
+		bob.attack();
+	}
 	return (0);
 }
