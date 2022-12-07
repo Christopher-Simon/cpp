@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:09:52 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/07 11:48:36 by christopher      ###   ########.fr       */
+/*   Updated: 2022/12/07 15:21:36 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ void	PhoneBook::AddContact(void) {
 void	PhoneBook::Search(void) const {
 	std::string	str;
 
+	if (this->_list[0].does_exist() == false) {
+		std::cout << "Please enter a contact" << std::endl;
+		return ;
+	}
 	for (int i = 0; this->_list[i].does_exist(); i++)
 	{
 		std::cout << i + 1;

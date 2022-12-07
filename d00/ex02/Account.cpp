@@ -85,17 +85,17 @@ void	Account::displayStatus( void ) const{
 }
 
 void	Account::_displayTimestamp( void ) {
-	// time_t ttime = time(0);
-    // tm *local_time = localtime(&ttime);
-	// std::cout << "[";
-	// std::cout << 1900 + local_time->tm_year;
-    // std::cout << 1 + local_time->tm_mon;
-    // std::cout << local_time->tm_mday;
-	// std::cout << "_";
-    // std::cout << 1 + local_time->tm_hour ;
-    // std::cout << 1 + local_time->tm_min;
-    // std::cout << 1 + local_time->tm_sec;
-	// std::cout << "] ";
+	time_t ttime = time(0);
+    tm *local_time = localtime(&ttime);
+	std::cout << "[";
+	std::cout << 1900 + local_time->tm_year;
+    std::cout << 1 + local_time->tm_mon;
+    std::cout << local_time->tm_mday;
+	std::cout << "_";
+    std::cout << 1 + local_time->tm_hour ;
+    std::cout << 1 + local_time->tm_min;
+    std::cout << 1 + local_time->tm_sec;
+	std::cout << "] ";
 }
 
 
