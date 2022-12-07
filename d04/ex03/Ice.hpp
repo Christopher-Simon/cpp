@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 18:37:28 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/07 18:35:04 by chsimon          ###   ########.fr       */
+/*   Created: 2022/12/07 20:05:23 by chsimon           #+#    #+#             */
+/*   Updated: 2022/12/07 20:05:27 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef ICE_HPP
+# define ICE_HPP
 
-#include <iostream>
-#include "Animal.hpp"
-
-class Cat : public Animal {
+class Ice 
+{
 	public:
-		Cat();
-		Cat(Cat const & raw);
-		~Cat();
-		void makeSound() const;
-		Cat & operator=(Cat const & rhs);
-		void setIdea(size_t n, std::string const newIdea);
-		const std::string & getIdea(size_t n) const;
+		Ice();
+		Ice(Ice const & raw);
+		~Ice();
+		Ice & operator=(Ice const & rhs);
+
 	private:
-		Brain	*_Brain;
+		
 };
 
 #endif
