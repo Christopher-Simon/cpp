@@ -1,6 +1,6 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie(void):name("") {
+Zombie::Zombie( void ):name("Zomb") {
 	return ;	
 }
 

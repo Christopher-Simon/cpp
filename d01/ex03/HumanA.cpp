@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:57:39 by chsimon           #+#    #+#             */
-/*   Updated: 2022/11/24 19:03:53 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/07 12:42:12 by christopher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
 
 HumanA::HumanA( std::string name, Weapon &weapon ): name(name), weapon(weapon) {
-	std::cout << "player :" << this->name << "; Weapon :" << this->weapon.getType() << std::endl;
+	std::cout << "player : " << this->name << "; Weapon : " << this->weapon.getType() << std::endl;
 	return ;	
 }
 

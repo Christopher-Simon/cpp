@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 13:26:05 by chsimon           #+#    #+#             */
-/*   Updated: 2022/11/24 13:39:23 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/07 12:28:55 by christopher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,10 @@ void randomChump( std::string name ) {
 
 	tmp->announce();
 	delete	tmp;
+}
+
+void randomChumpStack( std::string name ) {
+	Zombie tmp(name);
+
+	tmp.announce();
 }
