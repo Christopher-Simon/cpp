@@ -20,5 +20,10 @@ int	main(void){
 	std::cout << "valeur de stringPTR (qui est l'adresse de str) : " << stringPTR << std::endl;
 	std::cout << "valeur de str par *stringPTR : " << *stringPTR << std::endl;
 	std::cout << "valeur de stringREF : " << stringREF << std::endl;
+	str += " and Cortex";
+	std::cout << "valeur de str : " << str << std::endl;
+	std::cout << "valeur de stringPTR (qui est l'adresse de str) : " << stringPTR << std::endl;
+	std::cout << "valeur de str par *stringPTR : " << *stringPTR << std::endl;
+	std::cout << "valeur de stringREF : " << stringREF << std::endl;
 	return (0);
 }

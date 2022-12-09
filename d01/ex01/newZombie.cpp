@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 13:14:06 by chsimon           #+#    #+#             */
-/*   Updated: 2022/11/24 14:01:58 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/08 16:49:24 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ Zombie* newZombie( std::string name ) {
 }
 
 Zombie* zombieHorde( int N, std::string name ){
-	Zombie	*horde = new Zombie[N];
-
+	if (N <= 0)
+	{
+		std::cout << "uncorrect number" << std::endl;
+		return (NULL);
+	}
+	Zombie	*horde = new Zombie[N];	
 	for (int i = 0; i < N; i++)
 		horde[i].setName(name);
-	return (horde);	
+	return (horde);
 }

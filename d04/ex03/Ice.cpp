@@ -6,19 +6,20 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 20:05:20 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/07 20:05:22 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/09 16:33:32 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp" 
 
-Ice::Ice()
+Ice::Ice(): AMateria("ice")
 {
+	std::cout << "Created ice Materia : " << this->_type << std::endl; 
 }
 
-Ice::Ice(Ice const & raw)
+Ice::Ice(Ice const & raw): AMateria(raw)
 {
-	*this = raw;
+	std::cout << "Created ice Materia : " << this->_type << std::endl;
 }
 
 Ice & Ice::operator=(Ice const & rhs)
@@ -30,4 +31,9 @@ Ice & Ice::operator=(Ice const & rhs)
 
 Ice::~Ice()
 {
+	std::cout << "Destroyed ice Materia : " << this->_type << std::endl;
+}
+
+AMateria* Ice::clone() const{
+	return (new Ice(*this));
 }

@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:37:28 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/07 18:49:01 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/08 10:37:22 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Animal {
 		std::string getType() const;
 		virtual void makeSound() const;
 		Animal & operator=(Animal const & rhs);
-	private:
+	protected:
 		std::string _type;
 };
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 13:05:46 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/07 12:33:40 by christopher      ###   ########.fr       */
+/*   Updated: 2022/12/08 16:51:39 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,25 @@ Zombie* zombieHorde( int N, std::string name );
 #define RESET "\033[0m"
 
 int	main(void){
-	Zombie	*Henry =  newZombie("Henry");
+	{
+		Zombie	*Henry =  newZombie("Henry");
 
-	Henry->announce();
-	std::cout << std::endl << "Schwarzie n'aime pas du tout Jack" << std::endl;
-	randomChump("Jack");
+		Henry->announce();
+		std::cout << std::endl << "Schwarzie n'aime pas du tout Jack" << std::endl;
+		randomChump("Jack");
 
-	std::cout << std::endl << "Schwarzie va tuer Henry ici" << std::endl;
-	delete	Henry;
-
-	std::cout << std::endl << RED << "Schwarzie: oh shit" << RESET << std::endl;
-	Zombie	*Horde = zombieHorde(5, "Horde");
-	for (int i = 0; i < 5; i++)
-		Horde[i].announce();
-	std::cout << std::endl << "Schwarzie va les saccager" << std::endl;
-	delete[] Horde;
+		std::cout << std::endl << "Schwarzie va tuer Henry ici" << std::endl;
+		delete	Henry;	
+	}
+	{
+		std::cout << std::endl << RED << "Schwarzie: oh shit" << RESET << std::endl;
+		Zombie	*Horde = zombieHorde(5, "Horde");
+		if (!Horde)
+			return (0);
+		for (int i = 0; i < 5; i++)
+			Horde[i].announce();
+		std::cout << RED << std::endl << "Schwarzie va les saccager" << RESET << std::endl;
+		delete[] Horde;
+	}
 	return (0);
 }

@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 18:37:28 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/08 10:37:10 by chsimon          ###   ########.fr       */
+/*   Created: 2022/12/09 15:28:47 by chsimon           #+#    #+#             */
+/*   Updated: 2022/12/09 16:42:32 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
 
-#include <iostream>
+#ifndef IMATERIASOURCE_HPP
+# define IMATERIASOURCE_HPP
 
-class Animal {
+#include "Ice.hpp"
+
+class IMateriaSource
+{
 	public:
-		Animal();
-		Animal(std::string const & type);
-		Animal(Animal const & raw);
-		~Animal();
-		std::string getType() const;
-		virtual void makeSound() const;
-		Animal & operator=(Animal const & rhs);
-	protected:
-		std::string _type;
+		virtual ~IMateriaSource() {}
+		virtual void learnMateria(AMateria*) = 0;
+		virtual AMateria* createMateria(std::string const & type) = 0;
 };
 
 #endif
+

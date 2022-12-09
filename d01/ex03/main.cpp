@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:56:16 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/07 12:56:01 by christopher      ###   ########.fr       */
+/*   Updated: 2022/12/09 14:10:05 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	main(void){
 		club->setType("some other type of club");
 		bob.attack();
 		delete club;
-		bob.attack();
 	}
 	return (0);
 }

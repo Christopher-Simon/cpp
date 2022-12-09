@@ -1,16 +1,15 @@
 NAME = exec
 
 CXX = g++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror 
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -g3
 CPPFLAGS = -MMD 
 
 SRCS = main.cpp \
-Animal.cpp \
-WrongAnimal.cpp \
-Cat.cpp \
-WrongCat.cpp \
-Dog.cpp \
-Brain.cpp 
+AMateria.cpp \
+Character.cpp \
+Cure.cpp \
+Ice.cpp \
+MateriaSource.cpp \
 
 OBJ_DIR = obj/
 OBJS = $(addprefix  $(OBJ_DIR), $(SRCS:.cpp=.o))
