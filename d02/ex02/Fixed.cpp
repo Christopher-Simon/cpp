@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:35:52 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/01 14:42:23 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/12 12:45:28 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,30 @@ Fixed::Fixed(Fixed const & raw) {
 	*this = raw;
 }
 
+double	ft_pow(double x, double y) {
+	double	pow;
+
+	pow = 1;
+	for (size_t i(0); i < y; i++) {
+		pow *= x;
+	}
+	return (pow);
+}
+
 Fixed::Fixed(int const raw){
+	int	max_fixed(ft_pow(2, (31 - _fract)));
+
+	if (raw >= max_fixed || raw <= (max_fixed * -1) - 1)
+		std::cout << raw << " : This value might be overflowed" << std::endl;
 	// std::cout << "Int constructor called" << std::endl;
 	this->_val = raw * (1 << 8);
 }
 
 Fixed::Fixed(float const raw){
+	int	max_fixed(ft_pow(2, (31 - _fract)));
+
+	if (raw >= max_fixed || raw <= (max_fixed * -1) - 1)
+		std::cout << raw << " : This value might be overflowed" << std::endl;
 	// std::cout << "Double constructor called" << std::endl;
 	this->_val = round(raw * (1 << 8));
 }

@@ -1,20 +1,21 @@
 NAME = exec
 
-CXX = g++
+CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -g3
 CPPFLAGS = -MMD 
 
-SRCS = main.cpp \
+SRC = main.cpp \
+Bureaucrat.cpp
 
 OBJ_DIR = obj/
-OBJS = $(addprefix  $(OBJ_DIR), $(SRCS:.cpp=.o))
+OBJ = $(addprefix  $(OBJ_DIR), $(SRC:.cpp=.o))
 
-DEPS = $(OBJS:.o=.d)
+DEPS = $(OBJ:.o=.d)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+$(NAME): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
 
 $(OBJ_DIR)%.o: %.cpp
 	mkdir -p $(dir $@) 

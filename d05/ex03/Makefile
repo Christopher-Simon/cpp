@@ -1,10 +1,10 @@
 NAME = exec
 
-CXX = g++
+CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -g3
 CPPFLAGS = -MMD 
 
-SRCS = main.cpp \
+SRCS = main.cpp \Merci pour la correction ! 
 
 OBJ_DIR = obj/
 OBJS = $(addprefix  $(OBJ_DIR), $(SRCS:.cpp=.o))
