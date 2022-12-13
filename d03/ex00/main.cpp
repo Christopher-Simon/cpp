@@ -19,7 +19,5 @@ int	main(void)
 	Clappy.attack("test");
 	Clappy.takeDamage(20);
 
-	// ClapTrap	Zizi("zizi");
-	// Zii
 	return (0);
 }
