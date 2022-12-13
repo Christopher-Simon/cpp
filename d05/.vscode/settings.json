@@ -26,6 +26,11 @@
 		"ostream": "cpp",
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
-		"system_error": "cpp"
+		"system_error": "cpp",
+		"unordered_map": "cpp",
+		"vector": "cpp",
+		"functional": "cpp",
+		"optional": "cpp",
+		"tuple": "cpp"
 	}
 }

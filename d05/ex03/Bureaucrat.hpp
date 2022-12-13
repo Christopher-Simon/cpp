@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:54:40 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 16:21:38 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/13 16:28:03 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <iostream>
 # include <string>
 # include <exception>
-# include "Form.hpp"
+# include "AForm.hpp"
 
 #define GREEN "\033[32m"
 #define RED "\033[31m"
@@ -25,7 +25,7 @@
 #define PURPLE "\033[35m"
 #define RESET "\033[0m"
 
-class Form;
+class AForm;
 
 class Bureaucrat 
 {
@@ -39,15 +39,17 @@ class Bureaucrat
 		int			getGrade() const;
 		void		incrGrade();
 		void		decrGrade();
-		
-		void		signForm(Form & form);
-		
-		class GradeTooHighException : public std::exception
+
+		void		signForm(AForm & form);
+
+		class	BureaucratExceptions : public std::exception {
+		};
+		class GradeTooHighException : public BureaucratExceptions
 		{
 			public:
 				virtual	const char*	what() const throw();
 		};
-		class GradeTooLowException : public std::exception
+		class GradeTooLowException : public BureaucratExceptions
 		{
 			public:
 				virtual	const char* what() const throw();

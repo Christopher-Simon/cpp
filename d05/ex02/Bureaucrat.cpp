@@ -6,11 +6,11 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:54:45 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 16:19:26 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/13 16:42:34 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Bureaucrat.hpp" 
 
 Bureaucrat::Bureaucrat():_name("default"), _grade(150)
 {
@@ -79,13 +79,15 @@ std::ostream & operator<<( std::ostream & o, Bureaucrat const & rhs ) {
 	return o;
 }
 
-void		Bureaucrat::signForm(Form & form){
+typedef	AForm::AFormExceptions AFormGradeTooLow;
+
+void		Bureaucrat::signForm(AForm & form){
 	try
 	{
 		form.beSigned(*this);
 		std::cout << GREEN << this->getName() << " signed " << this->_name << RESET << std::endl;
 	}
-	catch(Form::GradeTooLowException & e)
+	catch(AFormGradeTooLow & e)
 	{
 		std::cerr << RED << this->getName() << " couldn't sign" << form.getName();
 		std::cerr << " because " << e.what() << RESET << std::endl;

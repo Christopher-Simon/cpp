@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:50:33 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/12 20:14:54 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/13 16:08:51 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <iostream>
 # include <exception>
 # include <string>
+
+class Bureaucrat;
 
 class Form 
 {
