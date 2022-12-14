@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:16:57 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/14 10:30:25 by christopher      ###   ########.fr       */
+/*   Updated: 2022/12/14 17:31:30 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ _AttackDamage(0) {
 	std::cout << "ClapTrap " << this->getName() << " created." << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap const & raw): _name(raw._name)
+ClapTrap::ClapTrap(ClapTrap const & raw) : _name(raw._name)
 {
 	*this = raw;
 	std::cout << "(Copy constructor called) ClapTrap " << this->getName() << " created." << std::endl;
@@ -52,16 +52,21 @@ ClapTrap & ClapTrap::operator=(ClapTrap const & rhs)
 	return (*this);
 }
 
+//****************EXCEPTIONS*****************//
+
 std::string ClapTrap::getName() const {
 	return (this->_name);
 }
-
 
 int ClapTrap::getHitPoints( void ) const {
 	return (this->_HitPoints);
 }
 int ClapTrap::getEnergyPoints( void ) const {
 	return (this->_EnergyPoints);
+}
+
+int ClapTrap::getAttackDamage( void ) const {
+	return (this->_AttackDamage);
 }
 
 void	lowEnergyPoint(ClapTrap & C){
@@ -73,7 +78,7 @@ void	death(ClapTrap	& C){
 }
 
 void	ActionError(ClapTrap & C) {
-	if (!C.getHitPoints())
+	if (C.getHitPoints() <= 0 )
 		death(C);
 	else
 		lowEnergyPoint(C);
@@ -103,8 +108,17 @@ void ClapTrap::beRepaired(unsigned int amount){
 	if (this->_EnergyPoints > 0 && this->_HitPoints > 0)
 	{
 		std::cout << "ClapTrap " << this->_name << " repairs itself gaining " << amount << " Hit points!" << std::endl;
+		this->_HitPoints += amount;
 		this->_EnergyPoints--;
 	}
 	else
-		lowEnergyPoint(*this);
+		ActionError(*this);
+}
+
+std::ostream & operator<<(std :: ostream & o, ClapTrap const & rhs ) {
+	o << "Name : " << rhs.getName() << std::endl
+	<< "HitPoints : " << rhs.getHitPoints() << std::endl
+	<< "Energy Points : " << rhs.getEnergyPoints() << std::endl
+	<< "Attack Damage : " << rhs.getAttackDamage();
+	return (o);
 }

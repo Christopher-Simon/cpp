@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:33:41 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 19:58:54 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/14 15:47:29 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ class Intern
 		Intern(Intern const & raw);
 		~Intern();
 		Intern & operator=(Intern const & rhs);
+		AForm * makeForm(std::string name, std::string target);
+	private:
 		AForm * createFormPres(std::string target);
 		AForm * createFormRobot(std::string target);
 		AForm * createFormShrub(std::string target);
-		AForm * makeForm(std::string name, std::string target);
-	private:
 		
 };
 

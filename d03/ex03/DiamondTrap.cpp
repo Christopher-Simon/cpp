@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:29:52 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/14 11:12:59 by christopher      ###   ########.fr       */
+/*   Updated: 2022/12/14 19:18:12 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ ScavTrap(),
 FragTrap(),
 _name("Default")
 {
+	this->_EnergyPoints = 50;
 	std::cout << "DiamondTrap " << this->_name << " created." << std::endl;
 }
 
@@ -35,10 +36,24 @@ _name(name)
 	std::cout << "DiamondTrap " << this->_name << " created." << std::endl;
 }
 
+DiamondTrap::DiamondTrap(DiamondTrap const & raw): ClapTrap(raw._name+((std::string)"_clap_name")),
+ScavTrap(),
+FragTrap(),
+_name(raw._name){
+	*this = raw; 
+}
+
 DiamondTrap::~DiamondTrap()
 {
 	std::cout << "DiamondTrap " << this->_name << " destroyed." << std::endl;
 }
+
+DiamondTrap & DiamondTrap::operator=(DiamondTrap const & rhs){
+	if (this != &rhs)
+		this->ClapTrap::operator=(rhs);
+	return (*this);
+}
+
 
 std::string DiamondTrap::getName() const
 {

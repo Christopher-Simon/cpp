@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:23:59 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 19:55:11 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/14 15:53:02 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(void)
 		std::cout << *CopyToSign << std::endl;
 		*CopyToSign = *Copy;
 		std::cout << *CopyToSign << std::endl;
-
 		delete RedPanda;
 		delete Copy;
 		delete CopyToSign;
@@ -128,6 +127,15 @@ int	main(void)
 		{
 			std::cout << RED << e.what() << RESET << std::endl;
 		}
+	}
+	{
+		Intern	Clodagh;
+		AForm	*Form;
+		Bureaucrat	Jack("Jack",1);
+		
+		Form = Clodagh.makeForm("shrubbery creation", "tagueule");
+		Jack.signForm(*Form);
+		Form->execute(Jack);
 	}
 	return (0);
 }

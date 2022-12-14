@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 17:24:43 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/05 14:48:31 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/14 18:14:13 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +26,43 @@ ScavTrap::ScavTrap(const std::string name): ClapTrap(name) {
 	std::cout << "ScavTrap " << this->getName() << " created." << std::endl;
 }
 
-ScavTrap::~ScavTrap() {
-	std::cout << "ScavTrap " << this->getName() << " destroyed." << std::endl;
+ScavTrap::ScavTrap(ScavTrap const & raw): ClapTrap(raw._name)
+{
+	*this = raw;
+	std::cout << "(Copy constructor) ScavTrap " << this->getName() << " created." << std::endl;
+
 }
 
-ScavTrap::ScavTrap( ScavTrap const & rhs ): ClapTrap() {
-	*this = rhs; 
-}
-
-ScavTrap & ScavTrap::operator=( ScavTrap const & rhs ) {
-	if ( this != &rhs )
+ScavTrap & ScavTrap::operator=(ScavTrap const & rhs) 
+{
+	if (this != & rhs)
 		this->ClapTrap::operator=(rhs);
 	return (*this);
 }
 
-static void	lowEnergyPoint(ClapTrap & C){
-	std::cout << "ClapTrap " << C.getName() << " doesn't have enough energy points." << std::endl;
+ScavTrap::~ScavTrap() {
+	std::cout << "ScavTrap " << this->getName() << " destroyed." << std::endl;
 }
 
-void ScavTrap::attack(const std::string & target) {
-	std::cout << "ScavTrap " << this->_name << " tries to attack " << target << std::endl;
+void	ScavTrap::guardGate() {
+	std::cout << "ScavTrap " << this->getName() << " initiates GateKeeper Mode." << std::endl;	
+	if (this->_EnergyPoints > 0 && this->_HitPoints > 0)
+	{
+		std::cout << "ScavTrap " << this->getName() << " is in GateKeeper Mode." << std::endl;	
+		this->_EnergyPoints--;
+	}	
+	else
+		std::cout << "Scavtrap " << this->_name << " can't defend his city." << std::endl;
+}
+
+void 	ScavTrap::attack(const std::string & target) {
+	std::cout << "ScavTrap " << this->_name << " , protecter of the city, attacks " << target << std::endl;
 	if (this->_EnergyPoints > 0 && this->_HitPoints > 0)
 	{
 		std::cout << "ScavTrap " << this->_name << " attacks " << target << ", causing " << this->_AttackDamage << " points of damage!" << std::endl;
 		this->_EnergyPoints--;
 	}
 	else
-		lowEnergyPoint(*this);
-}
+		std::cout << "Scavtrap " << this->_name << " can't do anything." << std::endl;
 
-void	ScavTrap::guardGate() { 
-	std::cout << "ScavTrap " << this->_name << " is in GateKeeper Mode." << std::endl;	
 }

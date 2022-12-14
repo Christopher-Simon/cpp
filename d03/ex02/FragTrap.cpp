@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 18:53:47 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/14 10:46:45 by christopher      ###   ########.fr       */
+/*   Updated: 2022/12/14 18:57:55 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 FragTrap::FragTrap(): ClapTrap() {
 	this->_HitPoints = 100;
-	this->_EnergyPoints = 50;
-	this->_AttackDamage = 20;
+	this->_EnergyPoints = 100;
+	this->_AttackDamage = 30;
 	std::cout << "FragTrap, the best Trap, " << this->getName() << " was smoothly created." << std::endl;
 }
 
 FragTrap::FragTrap(const std::string name): ClapTrap(name) {
 	this->_HitPoints = 100;
-	this->_EnergyPoints = 50;
-	this->_AttackDamage = 20;
+	this->_EnergyPoints = 100;
+	this->_AttackDamage = 30;
 	std::cout << "FragTrap, the best Trap, " << this->getName() << " was smoothly created." << std::endl;
 }
 
@@ -42,7 +42,15 @@ FragTrap::~FragTrap(){
 }
 
 void FragTrap::highFivesGuys(void) {
-	int x;
-	std::cout << this->getName() << " asks for a high five ! (press a key and enter, ctrl+d if you want to make it real quick)" << std::endl;
-	std::cin >> x;
+	std::string	str;
+	std::cout << "ScavTrap " << this->getName() << " concentrates very hard" << std::endl;	
+	if (this->_EnergyPoints > 0 && this->_HitPoints > 0)
+	{
+		std::cout << this->getName() << " asks for a high five ! (press enter, ctrl+d if you want to make it real quick)" << std::endl;
+		if (!std::cin.fail())
+			std::getline(std::cin, str);
+		this->_EnergyPoints--;
+	}
+	else
+		std::cout << "Scavtrap " << this->_name << " broke air." << std::endl;
 }
