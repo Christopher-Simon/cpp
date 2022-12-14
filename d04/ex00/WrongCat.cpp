@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:40:44 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/07 15:51:34 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/14 19:44:16 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ WrongCat::WrongCat(): WrongAnimal("WrongCat") {
 	std::cout << "WrongCat created" << std::endl;
 }
 
-WrongCat::WrongCat(WrongCat const & raw): WrongAnimal("WrongCat") {
+WrongCat::WrongCat(WrongCat const & raw): WrongAnimal(raw.getType()) {
 	*this = raw;
 	std::cout << "WrongCat created" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:40:44 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/07 19:37:28 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/14 20:15:25 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ Dog::Dog(): Animal("Dog") {
 	std::cout << "Dog created" << std::endl;
 }
 
-Dog::Dog(Dog const & raw): Animal("Dog") {
+Dog::Dog(Dog const & raw): Animal(raw._type) {
+	this->_Brain = new Brain();
 	*this = raw;
 	std::cout << "Dog created" << std::endl;
 }

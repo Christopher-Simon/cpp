@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:40:44 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/06 19:20:10 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/14 19:43:51 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ WrongAnimal::WrongAnimal(std::string const & type): _type(type) {
 	std::cout << "WrongAnimal " << this->_type << " created" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(WrongAnimal const & raw): _type("") {
+WrongAnimal::WrongAnimal(WrongAnimal const & raw): _type(raw._type) {
 	*this = raw;
 	std::cout << "WrongAnimal created" << std::endl;
 }
