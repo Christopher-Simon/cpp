@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:16:57 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 20:06:13 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/14 10:25:17 by christopher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ _AttackDamage(0) {
 	std::cout << "ClapTrap " << this->getName() << " created." << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap const & raw)
+ClapTrap::ClapTrap(ClapTrap const & raw) : _name(raw._name)
 {
 	*this = raw;
+	std::cout << "(Copy constructor called) ClapTrap " << this->getName() << " created." << std::endl;
 }
 
 
@@ -44,6 +45,9 @@ ClapTrap::~ClapTrap() {
 ClapTrap & ClapTrap::operator=(ClapTrap const & rhs)
 {
 	if (this != &rhs) {
+		this->_HitPoints = rhs._HitPoints;
+		this->_EnergyPoints = rhs._EnergyPoints;
+		this->_AttackDamage = rhs._AttackDamage;
 	}
 	return (*this);
 }
@@ -53,7 +57,6 @@ ClapTrap & ClapTrap::operator=(ClapTrap const & rhs)
 std::string ClapTrap::getName() const {
 	return (this->_name);
 }
-
 
 int ClapTrap::getHitPoints( void ) const {
 	return (this->_HitPoints);

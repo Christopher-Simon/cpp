@@ -1,10 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/14 11:11:33 by christopher       #+#    #+#             */
+/*   Updated: 2022/12/14 11:11:41 by christopher      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "DiamondTrap.hpp"
+#define GREEN "\033[32m"
+#define RED "\033[31m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define PURPLE "\033[35m"
+#define RESET "\033[0m"
 
 int	main(void)
 {
 	std::cout << std::endl << std::endl;
-	std::cout << "____________TEST 1_______________"<< std::endl;
+	std::cout << BLUE << "____________TEST 1_______________" << RESET << std::endl;
 	std::cout << std::endl << std::endl;
 	{
 		DiamondTrap	Test("Diamond");
@@ -24,7 +42,7 @@ int	main(void)
 	}
 
 	std::cout << std::endl << std::endl;
-	std::cout << "____________TEST 2_______________"<< std::endl;
+	std::cout << BLUE << "____________TEST 2_______________" << RESET << std::endl;
 	std::cout << std::endl << std::endl;
 	{
 		DiamondTrap	Test("Guardian");
@@ -38,7 +56,7 @@ int	main(void)
 	}
 
 	std::cout << std::endl << std::endl;
-	std::cout << "____________TEST 3_______________"<< std::endl;
+	std::cout << BLUE << "____________TEST 3_______________" << RESET << std::endl;
 	std::cout << std::endl << std::endl;
 	{
 		DiamondTrap	Test("Funny");
@@ -51,7 +69,7 @@ int	main(void)
 	}
 
 	std::cout << std::endl << std::endl;
-	std::cout << "____________TEST 4_______________"<< std::endl;
+	std::cout << BLUE << "____________TEST 4_______________" << RESET << std::endl;
 	std::cout << std::endl << std::endl;
 	{
 		DiamondTrap Test("Philo");
@@ -61,7 +79,7 @@ int	main(void)
 	}
 
 	std::cout << std::endl << std::endl;
-	std::cout << "____________TEST 5_______________"<< std::endl;
+	std::cout << BLUE << "____________TEST 5_______________" << RESET << std::endl;
 	std::cout << std::endl << std::endl;
 	{
 		ScavTrap	Test("Warrior");

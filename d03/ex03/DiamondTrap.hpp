@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:29:20 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/05 18:35:49 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/14 11:13:02 by christopher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		std::string	_name;
 };
 
-std::ostream & operator<<(std :: ostream & o, DiamondTrap const & rhs );
+// std::ostream & operator<<(std :: ostream & o, DiamondTrap const & rhs );
 
 #endif

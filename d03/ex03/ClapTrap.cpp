@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:16:57 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/05 14:54:14 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/14 11:14:00 by christopher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ void ClapTrap::beRepaired(unsigned int amount){
 }
 
 std::ostream & operator<<(std :: ostream & o, ClapTrap const & rhs ) {
-	o << rhs.getName() << std::endl
-	<< rhs.getHitPoints() << std::endl
-	<< rhs.getEnergyPoints() << std::endl
-	<< rhs.getAttackDamage();
+	o << "Name : " << rhs.getName() << std::endl
+	<< "HitPoints : " << rhs.getHitPoints() << std::endl
+	<< "Energy Points : " << rhs.getEnergyPoints() << std::endl
+	<< "Attack Damage : " << rhs.getAttackDamage();
 	return (o);
 }

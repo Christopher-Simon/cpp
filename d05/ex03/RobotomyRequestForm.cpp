@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:27:43 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 19:14:18 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/14 11:17:08 by christopher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ RobotomyRequestForm & RRF::operator=(RobotomyRequestForm const & rhs)
 {
 	if (this != &rhs) {
 		this->setSigned(rhs.getSigned());
+		// *this->AForm::operator=(rhs) ;
 	}
 	return (*this);
 }

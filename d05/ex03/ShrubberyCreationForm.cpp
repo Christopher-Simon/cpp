@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 11:17:39 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 19:30:11 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/14 11:17:12 by christopher      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ ShrubberyCreationForm	& ShrubberyCreationForm::operator=(ShrubberyCreationForm c
 {
 	if (this != &rhs) {
 		this->setSigned(rhs.getSigned());
+		// *this->AForm::operator=(rhs) ;
 	}
 	return (*this);
 }
