@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 11:11:33 by christopher       #+#    #+#             */
-/*   Updated: 2022/12/14 11:11:41 by christopher      ###   ########.fr       */
+/*   Updated: 2022/12/14 19:18:53 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,107 +21,77 @@
 
 int	main(void)
 {
-	std::cout << std::endl << std::endl;
-	std::cout << BLUE << "____________TEST 1_______________" << RESET << std::endl;
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl << YELLOW << "Test Solo Diam's" << RESET << std::endl;
 	{
 		DiamondTrap	Test("Diamond");
-		ScavTrap	ScavTest("Scav");
-		FragTrap	FragTest("Frag");
-		ClapTrap	ClapTest("Clap");
-
-		std::cout << Test << std::endl;
-		std::cout << ScavTest << std::endl;
-		std::cout << FragTest << std::endl;
-		std::cout << ClapTest << std::endl;
-		std::cout << std::endl;
-		Test.attack("Ennemi");
-		ScavTest.attack("Ennemi");
-		ClapTest.attack("Ennemi");
-		std::cout << std::endl;
-	}
-
-	std::cout << std::endl << std::endl;
-	std::cout << BLUE << "____________TEST 2_______________" << RESET << std::endl;
-	std::cout << std::endl << std::endl;
-	{
-		DiamondTrap	Test("Guardian");
-		Test.guardGate();
-
-		std::cout << std::endl;
-		ScavTrap	ScavTest;
-		ScavTest.guardGate();
-
-		std::cout << std::endl;
-	}
-
-	std::cout << std::endl << std::endl;
-	std::cout << BLUE << "____________TEST 3_______________" << RESET << std::endl;
-	std::cout << std::endl << std::endl;
-	{
-		DiamondTrap	Test("Funny");
-		Test.highFivesGuys();
-
-		std::cout << std::endl;
-		FragTrap	FragTest;
-		FragTest.highFivesGuys();
-		std::cout << std::endl;
-	}
-
-	std::cout << std::endl << std::endl;
-	std::cout << BLUE << "____________TEST 4_______________" << RESET << std::endl;
-	std::cout << std::endl << std::endl;
-	{
-		DiamondTrap Test("Philo");
 		std::cout << std::endl;
 		Test.whoAmI();
 		std::cout << std::endl;
 	}
-
-	std::cout << std::endl << std::endl;
-	std::cout << BLUE << "____________TEST 5_______________" << RESET << std::endl;
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl << YELLOW << "Test canoniques" << RESET << std::endl;
 	{
-		ScavTrap	Test("Warrior");
-		ClapTrap	ClapTest;
+		DiamondTrap	Test;
+		DiamondTrap	John("John");
 
-		Test.attack("ennemi");
-		ClapTest.attack("ennemi");
+		std::cout << Test << std::endl;
+		Test.takeDamage(5);
+		DiamondTrap	Copy(Test);
+		std::cout << Test << std::endl;
+		std::cout << Copy << std::endl;
+		std::cout << std::endl;
+
+		std::cout << John << std::endl;
+		John = Copy;
+		std::cout << John << std::endl;
+		std::cout << Copy << std::endl;
+		Copy.takeDamage(5);
+		std::cout << John << std::endl;
+		std::cout << Copy << std::endl;
 	}
-// 	{ClapTrap	Clappy("Clappy");
+	std::cout << std::endl;
+	std::cout << std::endl << YELLOW << "Test diff attack" << RESET << std::endl;
+	{
+		ClapTrap	Clappy("Clappy");
+		ScavTrap	Scavy("Scavy");
+		FragTrap	Fraggy("Fraggy");
+		DiamondTrap	Diamy("Diamy");
 
-// 	Clappy.attack("test");
-// 	Clappy.attack("test");
-// 	Clappy.attack("test");
-// 	Clappy.attack("test");
-// 	Clappy.beRepaired(5);
-// 	Clappy.attack("test");
-// 	Clappy.attack("test");
-// 	Clappy.attack("test");
-// 	Clappy.attack("test");
-// 	Clappy.attack("test");
-// 	Clappy.attack("test");
-// 	Clappy.attack("test");
-// 	Clappy.attack("test");
-// 	Clappy.takeDamage(20);}
-
-// {
-// 	std::cout << std::endl << std::endl;
-// 	ScavTrap	Stappy("Stappy");
-
-// 	Stappy.attack("méchant");
-// 	Stappy.takeDamage(20);
-// 	Stappy.takeDamage(70);
-// 	Stappy.beRepaired(10);
-// 	Stappy.takeDamage(10);
-// 	Stappy.beRepaired(10);
-// }
-// {
-// 	std::cout << std::endl << std::endl;
-
-// 	FragTrap Fraggy("Fraggy");
-
-// 	Fraggy.highFivesGuys();	
-// }
+		std::cout << std::endl;
+		Clappy.attack("test");
+		Scavy.attack("test");
+		Fraggy.attack("test");
+		Diamy.attack("test");
+		std::cout << std::endl;
+	}
+	std::cout << std::endl;
+	std::cout << std::endl << YELLOW << "Print values" << RESET << std::endl;
+	{
+		ClapTrap	Clappy("Clappy");
+		ScavTrap	Scavy("Scavy");
+		FragTrap	Fraggy("Fraggy");
+		DiamondTrap	Diamy("Diamy");
+		
+		std::cout << std::endl;
+		std::cout << Clappy << RESET << std::endl;
+		std::cout << Scavy << RESET << std::endl;
+		std::cout << Fraggy << RESET << std::endl;
+		std::cout << Diamy << RESET << std::endl;
+		std::cout << std::endl;
+	}
+	std::cout << std::endl;
+	std::cout << std::endl << YELLOW << "Test special attacks" << RESET << std::endl;
+	{
+		DiamondTrap	Diamy("Diamy");
+		std::cout << "Energy points :" << Diamy.getEnergyPoints() << std::endl;
+		Diamy.guardGate();
+		std::cout << "Energy points :" << Diamy.getEnergyPoints() << std::endl;
+		Diamy.highFivesGuys();
+		std::cout << "Energy points :" << Diamy.getEnergyPoints() << std::endl;
+		Diamy.takeDamage(15);
+		std::cout << Diamy << std::endl;
+		std::cout << std::endl;
+	}
 	return (0);
 }

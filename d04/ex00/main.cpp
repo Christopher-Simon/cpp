@@ -11,6 +11,39 @@
 
 int main()
 {
+	std::cout << GREEN << "Canonique test" << RESET << std::endl;
+	{
+		Animal test;
+		std::cout << "test.getType() : " << test.getType() << std::endl;
+		Animal copy(test);
+		std::cout << "copy.getType() : " << copy.getType() << std::endl;
+		Animal equal("equal");
+		std::cout << "equal.getType() : " << equal.getType() << std::endl;
+		equal = copy;
+		std::cout << "equal.getType() : " << equal.getType() << std::endl;
+	}
+	std::cout << GREEN << "Canonique Dog test" << RESET << std::endl;
+	{
+		Dog test;
+		std::cout << "test.getType() : " << test.getType() << std::endl;
+		Dog copy(test);
+		std::cout << "copy.getType() : " << copy.getType() << std::endl;
+		Dog equal;
+		std::cout << "equal.getType() : " << equal.getType() << std::endl;
+		equal = copy;
+		std::cout << "equal.getType() : " << equal.getType() << std::endl;
+	}
+	std::cout << GREEN << "Canonique Cat test" << RESET << std::endl;
+	{
+		Cat test;
+		std::cout << "test.getType() : " << test.getType() << std::endl;
+		Cat copy(test);
+		std::cout << "copy.getType() : " << copy.getType() << std::endl;
+		Cat equal;
+		std::cout << "equal.getType() : " << equal.getType() << std::endl;
+		equal = copy;
+		std::cout << "equal.getType() : " << equal.getType() << std::endl;
+	}
 	std::cout << GREEN << "TEST With Good Class" << RESET << std::endl;
 	{
 		const Animal* animal = new Animal();
@@ -29,6 +62,9 @@ int main()
 		dog->makeSound();
 		std::cout << PURPLE << "cat->makeSound() : " << RESET;
 		cat->makeSound(); //will output the cat sound!
+		delete animal;
+		delete dog;
+		delete cat;
 	}
 
 	std::cout << std::endl << std::endl;
@@ -43,6 +79,8 @@ int main()
 		wrongAnimal->makeSound();
 		std::cout << PURPLE << "wrongCat->makeSound() : " << RESET;
 		wrongCat->makeSound(); //will not output the cat sound!
+		delete wrongAnimal;
+		delete wrongCat;
 	}
 
 return 0;

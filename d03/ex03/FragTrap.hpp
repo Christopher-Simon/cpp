@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 18:51:42 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/05 12:44:55 by chsimon          ###   ########.fr       */
+/*   Updated: 2022/12/14 18:37:10 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@ class FragTrap : public virtual ClapTrap
 	public:
 		FragTrap();
 		FragTrap(const std::string name);
-		~FragTrap();
-
 		FragTrap(FragTrap const & raw);
+		~FragTrap();
 		FragTrap & operator=(FragTrap const & rhs);
+		
 		void highFivesGuys(void);
-
 	protected:
 };
 

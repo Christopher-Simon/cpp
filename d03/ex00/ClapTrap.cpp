@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:16:57 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/14 10:25:17 by christopher      ###   ########.fr       */
+/*   Updated: 2022/12/14 17:31:57 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ int ClapTrap::getEnergyPoints( void ) const {
 	return (this->_EnergyPoints);
 }
 
+int ClapTrap::getAttackDamage( void ) const {
+	return (this->_AttackDamage);
+}
+
 void	lowEnergyPoint(ClapTrap & C){
 	std::cout << "ClapTrap " << C.getName() << " doesn't have enough energy points." << std::endl;
 }
@@ -74,7 +78,7 @@ void	death(ClapTrap	& C){
 }
 
 void	ActionError(ClapTrap & C) {
-	if (!C.getHitPoints())
+	if (C.getHitPoints() <= 0 )
 		death(C);
 	else
 		lowEnergyPoint(C);
@@ -104,8 +108,17 @@ void ClapTrap::beRepaired(unsigned int amount){
 	if (this->_EnergyPoints > 0 && this->_HitPoints > 0)
 	{
 		std::cout << "ClapTrap " << this->_name << " repairs itself gaining " << amount << " Hit points!" << std::endl;
+		this->_HitPoints += amount;
 		this->_EnergyPoints--;
 	}
 	else
-		lowEnergyPoint(*this);
+		ActionError(*this);
+}
+
+std::ostream & operator<<(std :: ostream & o, ClapTrap const & rhs ) {
+	o << "Name : " << rhs.getName() << std::endl
+	<< "HitPoints : " << rhs.getHitPoints() << std::endl
+	<< "Energy Points : " << rhs.getEnergyPoints() << std::endl
+	<< "Attack Damage : " << rhs.getAttackDamage();
+	return (o);
 }

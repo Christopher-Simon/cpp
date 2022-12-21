@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:08:25 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/14 10:24:41 by christopher      ###   ########.fr       */
+/*   Updated: 2022/12/14 14:17:57 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class ClapTrap
 		std::string getName( void ) const;
 		int getHitPoints( void ) const;
 		int getEnergyPoints( void ) const;
+		int getAttackDamage( void ) const;
 
 		void attack(const std::string & target);
 		void takeDamage(unsigned int amount);
@@ -40,5 +41,8 @@ class ClapTrap
 		int		_EnergyPoints;
 		int		_AttackDamage;
 };
+
+std::ostream & operator<<(std :: ostream & o, ClapTrap const & rhs );
+
 
 #endif

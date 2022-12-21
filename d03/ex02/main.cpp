@@ -9,42 +9,56 @@
 
 int	main(void)
 {
+	std::cout << std::endl;
+	std::cout << std::endl << YELLOW << "Test Solo Frag" << RESET << std::endl;
 	{
-		std::cout << std::endl;
-		std::cout << BLUE << "Mains test ClapTrap" << RESET << std::endl; 
-		std::cout << std::endl;
-		ClapTrap	Clappy("Clappy");
-
-		Clappy.attack("test");
-		Clappy.attack("test");
-		Clappy.attack("test");
-		Clappy.attack("test");
-		Clappy.beRepaired(5);
-		Clappy.attack("test");
-		Clappy.attack("test");
-		Clappy.attack("test");
-		Clappy.attack("test");
-		Clappy.attack("test");
-		Clappy.attack("test");
-		Clappy.attack("test");
-		Clappy.attack("test");
-		Clappy.takeDamage(20);
+		FragTrap	Frag;
 	}
+	std::cout << std::endl;
+	std::cout << std::endl << YELLOW << "Test canoniques" << RESET << std::endl;
 	{
-		std::cout << std::endl;
-		std::cout << BLUE << "Mains test ScavTrap" << RESET << std::endl; 
-		std::cout << std::endl;
-		ScavTrap	Stappy("Stappy");
+		FragTrap	Test;
+		FragTrap	John("John");
 
-		std::cout << YELLOW  << std::endl; 
-		Stappy.guardGate();
-		std::cout << RESET  << std::endl;
-		Stappy.attack("méchant");
-		Stappy.takeDamage(20);
-		Stappy.takeDamage(70);
-		Stappy.beRepaired(10);
-		Stappy.takeDamage(10);
-		Stappy.beRepaired(10);
+		std::cout << Test << std::endl;
+		Test.takeDamage(5);
+		FragTrap	Copy(Test);
+		std::cout << Test << std::endl;
+		std::cout << Copy << std::endl;
+		std::cout << std::endl;
+
+		std::cout << John << std::endl;
+		John = Copy;
+		std::cout << John << std::endl;
+		std::cout << Copy << std::endl;
+		Copy.takeDamage(5);
+		std::cout << John << std::endl;
+		std::cout << Copy << std::endl;
+	}
+	std::cout << std::endl;
+	std::cout << std::endl << YELLOW << "Test diff attack" << RESET << std::endl;
+	{
+		ClapTrap	Clappy("Clappy");
+		ScavTrap	Scavy("Scavy");
+		FragTrap	Fraggy("Fraggy");
+
+		std::cout << std::endl;
+		Clappy.attack("test");
+		Scavy.attack("test");
+		Fraggy.attack("test");
+		std::cout << std::endl;
+	}
+	std::cout << std::endl << YELLOW << "Print values" << RESET << std::endl;
+	{
+		ClapTrap	Clappy("Clappy");
+		ScavTrap	Scavy("Scavy");
+		FragTrap	Fraggy("Fraggy");
+		
+		std::cout << std::endl;
+		std::cout << Clappy << RESET << std::endl;
+		std::cout << Scavy << RESET << std::endl;
+		std::cout << Fraggy << RESET << std::endl;
+		std::cout << std::endl;
 	}
 	{
 		std::cout << std::endl;
@@ -53,8 +67,17 @@ int	main(void)
 
 		FragTrap Fraggy("Fraggy");
 
+		std::cout << Fraggy << std::endl;
 		Fraggy.highFivesGuys();	
-		Fraggy.highFivesGuys();	
+		std::cout << Fraggy << std::endl;
+		Fraggy.takeDamage(100);
+		std::cout << Fraggy << std::endl;
+		Fraggy.highFivesGuys();
+		Fraggy.attack("test");
+		Fraggy.beRepaired(100);
+		Fraggy.takeDamage(100);
+		std::cout << Fraggy << std::endl;
+
 	}
 	{
 		std::cout << std::endl;
