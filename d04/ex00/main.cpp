@@ -82,7 +82,20 @@ int main()
 		delete wrongAnimal;
 		delete wrongCat;
 	}
+	std::cout << std::endl << std::endl;
+	std::cout << RED << "TEST With same Copy" << RESET << std::endl;
+	{
+		Animal *Same = new Dog();
 
+		*Same = *Same;
+		Same->makeSound();
+		delete Same;
+
+		Same = new Cat();
+		*Same = *Same;
+		Same->makeSound();
+		delete Same;
+	}
 return 0;
 }
 
