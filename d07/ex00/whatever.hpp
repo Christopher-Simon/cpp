@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:33:59 by chsimon           #+#    #+#             */
-/*   Updated: 2023/01/06 18:32:14 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/09 11:09:05 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ return (x >= y ? x : y);
 }
 template< typename T >
 T const & min(T const & x, T const & y) {
-	return (x >= y ? x : y);
+	return (x <= y ? x : y);
 }
 
 #endif
