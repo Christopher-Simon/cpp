@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:54:45 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/12 19:44:25 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 12:42:40 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ _grade(grade) {
 		throw (GradeTooLowException());
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const & raw)
+Bureaucrat::Bureaucrat(Bureaucrat const & raw): _name(raw._name)
 {
 	*this = raw;
 }
@@ -33,7 +33,6 @@ Bureaucrat::Bureaucrat(Bureaucrat const & raw)
 Bureaucrat & Bureaucrat::operator=(Bureaucrat const & rhs)
 {
 	if (this != &rhs) {
-		this->_name = rhs._name;
 		this->_grade = rhs._grade;	
 	}
 	return (*this);
@@ -67,7 +66,7 @@ void		Bureaucrat::decrGrade() {
 		this->_grade++;
 }
 
-std::string	Bureaucrat::getName() const {
+const std::string	Bureaucrat::getName() const {
 	return (this->_name);
 }
 int			Bureaucrat::getGrade() const {

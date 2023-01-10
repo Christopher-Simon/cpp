@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 11:24:26 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 19:30:49 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 14:02:53 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 #include "AForm.hpp"
 
 #define TREE \
+"    *\n"\
+"   /.\\\n"\
+"  /o..\\\n"\
+"  /..o\\\n"\
+" /.o..o\\\n"\
+" /...o.\\\n"\
+"/..o....\\\n"\
+"^^^[_]^^^\n"\
 "    *\n"\
 "   /.\\\n"\
 "  /o..\\\n"\
@@ -34,8 +42,8 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm(ShrubberyCreationForm const & raw);
 		~ShrubberyCreationForm();
 		ShrubberyCreationForm & operator=(ShrubberyCreationForm const & rhs);
-		void	exec(void);
 	private:
+		void	exec(void) const;
 };
 
 #endif

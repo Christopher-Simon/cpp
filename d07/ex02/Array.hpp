@@ -36,7 +36,7 @@ class Array
 		{
 			if (this->_element)
 				delete[] this->_element;
-		};
+		}
 
 		Array & operator=(Array const & rhs) 
 		{

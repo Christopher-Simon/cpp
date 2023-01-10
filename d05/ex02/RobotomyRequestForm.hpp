@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 11:14:06 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 18:42:58 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 14:02:55 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class	RobotomyRequestForm : public AForm
 		RobotomyRequestForm(RobotomyRequestForm const & raw);
 		~RobotomyRequestForm();
 		RobotomyRequestForm & operator=(RobotomyRequestForm const & rhs);
-		void	exec(void);
 	private:
+		void	exec(void) const;
 };
 
 #endif

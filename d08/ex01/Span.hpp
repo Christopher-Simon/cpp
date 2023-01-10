@@ -8,6 +8,15 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <cstdlib>
+#include <ctime>
+
+#define GREEN "\033[32m"
+#define RED "\033[31m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define PURPLE "\033[35m"
+#define RESET "\033[0m"
 
 class Span 
 {
@@ -19,10 +28,14 @@ class Span
 		Span & operator=(Span const & rhs);
 		int		shortestSpan();
 		int		longestSpan();
-		void	addNumber(int n);
+		void	addNumber(int val);
+		void	fillRandom();
+		void	addRange(int val, size_t n);
+		void 	print_tab(void);
 
 	private:
 		std::vector<int> _tab;
+		size_t _max;
 };
 
 #endif

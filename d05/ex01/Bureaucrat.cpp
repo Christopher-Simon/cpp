@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:54:45 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 16:19:26 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:17:47 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ _grade(grade) {
 		throw (GradeTooLowException());
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const & raw)
+Bureaucrat::Bureaucrat(Bureaucrat const & raw): _name(raw._name)
 {
 	*this = raw;
 }
@@ -66,7 +66,7 @@ void		Bureaucrat::decrGrade() {
 		this->_grade++;
 }
 
-std::string	Bureaucrat::getName() const {
+const std::string	Bureaucrat::getName() const {
 	return (this->_name);
 }
 
@@ -83,11 +83,10 @@ void		Bureaucrat::signForm(Form & form){
 	try
 	{
 		form.beSigned(*this);
-		std::cout << GREEN << this->getName() << " signed " << this->_name << RESET << std::endl;
 	}
-	catch(Form::GradeTooLowException & e)
+	catch (Form::FormExceptions & e)
 	{
-		std::cerr << RED << this->getName() << " couldn't sign" << form.getName();
+		std::cerr << RED << this->getName() << " couldn't sign " << form.getName();
 		std::cerr << " because " << e.what() << RESET << std::endl;
 	}
 	return ;

@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:54:40 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/12 19:12:18 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 12:38:58 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Bureaucrat
 		~Bureaucrat();
 		Bureaucrat & operator=(Bureaucrat const & rhs);
 		const std::string	getName() const;
-		const int			getGrade() const;
+		int			getGrade() const;
 		void		incrGrade();
 		void		decrGrade();
 		class GradeTooHighException : public std::exception

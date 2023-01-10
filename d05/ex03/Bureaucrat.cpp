@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:54:45 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 16:42:34 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:21:49 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,28 @@ std::ostream & operator<<( std::ostream & o, Bureaucrat const & rhs ) {
 }
 
 typedef	AForm::AFormExceptions AFormGradeTooLow;
+typedef	AForm::AFormExceptions	AFormExceptions;
 
 void		Bureaucrat::signForm(AForm & form){
 	try
 	{
 		form.beSigned(*this);
-		std::cout << GREEN << this->getName() << " signed " << this->_name << RESET << std::endl;
 	}
-	catch(AFormGradeTooLow & e)
+	catch(AFormExceptions & e)
 	{
-		std::cerr << RED << this->getName() << " couldn't sign" << form.getName();
+		std::cerr << RED << this->_name << " couldn't sign " << form.getName();
 		std::cerr << " because " << e.what() << RESET << std::endl;
 	}
 	return ;
+}
+
+void	Bureaucrat::executeForm(AForm const & form) {
+	try
+	{
+		form.execute(*this);
+	}
+	catch(AFormExceptions& e)
+	{
+		std::cerr << RED << e.what() << RESET << '\n';
+	}
 }

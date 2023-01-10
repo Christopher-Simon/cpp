@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:17:05 by chsimon           #+#    #+#             */
-/*   Updated: 2023/01/09 15:27:07 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 16:49:25 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ void	add(const T & nb) {
 	std::cout << static_cast<T>(nb + 5) << std::endl;
 }
 
-// class Awesome
-// {
-// 	public: 
-// 		Awesome() : _n(42) {return;}
-// 		int get(void) const {return ( this->_n);}
-// 	private : 
-// 		int _n;
-// };
+class Awesome
+{
+	public: 
+		Awesome() : _n(42) {return;}
+		int get(void) const {return ( this->_n);}
+	private : 
+		int _n;
+};
 
-// std::ostream & operator<<(std::ostream & o, Awesome const & rhs)
-// {
-// 	o << rhs.get();
-// 	return o;
-// }
+std::ostream & operator<<(std::ostream & o, Awesome const & rhs)
+{
+	o << rhs.get();
+	return o;
+}
 
-// template< typename T >
-// void	print(const T & x) {
-// 	std::cout << x << std::endl;
-// }
+template< typename T >
+void	print(const T & x) {
+	std::cout << x << std::endl;
+}
 
 // int	main(void)
 // {
@@ -60,7 +60,6 @@ int	main(void)
 		char tab[] = "abcdef";
 		size_t tabSize = sizeof(tab) / sizeof(tab[0]); 
 		iter(tab, tabSize, add);
-		add(tab[0]);
 		std::cout << tab << std::endl;
 	}
 	return (0);

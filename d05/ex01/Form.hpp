@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:50:33 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 16:08:51 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 14:50:40 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,26 @@ class Form
 		Form(Form const & raw);
 		~Form();
 		Form & operator=(Form const & rhs);
-		class GradeTooHighException : public std::exception
+
+		class	FormExceptions : public std::exception {
+		};
+		
+		class GradeTooHighException : public FormExceptions
 		{
 			public:
 				virtual	const char*	what() const throw();
 		};
-		class GradeTooLowException : public std::exception
+		class GradeTooLowException : public FormExceptions
 		{
 			public:
 				virtual	const char* what() const throw();
 		};
+		class IsAlreadySigned : public FormExceptions
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+	
 		std::string	getName() const;
 		int			getGradeSign() const;
 		int			getGradeExec() const;
