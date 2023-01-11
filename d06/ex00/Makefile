@@ -5,6 +5,7 @@ CXXFLAGS = -std=c++98 -Wconversion -Wno-sign-conversion -Wall -Wextra -Werror -g
 CPPFLAGS = -MMD 
 
 SRC = main.cpp \
+Caster.cpp
 
 OBJ_DIR = obj/
 OBJ = $(addprefix  $(OBJ_DIR), $(SRC:.cpp=.o))
