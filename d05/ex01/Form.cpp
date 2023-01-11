@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:48:42 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 16:16:02 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:08:12 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,16 @@ const char* Form::GradeTooLowException::what() const throw()
 	return ("Grade is too low.");
 }
 
+const char* Form::IsAlreadySigned::what() const throw()
+{
+	return ("Is already signed.");
+}
+
 void		Form::beSigned(Bureaucrat & him) {
 	if (this->getSigned())
-		std::cout << YELLOW << this->_name << " is already signed "  << RESET << std::endl;
+		throw (IsAlreadySigned());
 	if (him.getGrade() > this->getGradeSign()) 
-			throw (GradeTooLowException());
+		throw (GradeTooLowException());
 	this->_signed = true;
+	std::cout << GREEN << him.getName() << " signed " << this->_name << RESET << std::endl;
 }

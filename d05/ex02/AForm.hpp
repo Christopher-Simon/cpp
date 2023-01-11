@@ -45,6 +45,11 @@ class AForm
 			public:
 				const char* what() const throw();
 		};
+		class IsAlreadySigned : public AFormExceptions
+		{
+			public:
+				virtual const char* what() const throw();
+		};
 		class IsNotSigned : public AFormExceptions
 		{
 			public:
@@ -57,13 +62,13 @@ class AForm
 		bool			getSigned() const;
 		void			setSigned(bool res);
 		void			beSigned(Bureaucrat & him);
-		void			execute(Bureaucrat const & executor);
-		virtual	void	exec(void) = 0;
+		void			execute(Bureaucrat const & executor) const;
 	
 	protected:
 		const std::string	_target;
 
 	private:
+		virtual	void	exec(void) const = 0;
 		const std::string	_name;
 		bool				_signed;
 		const int			_grade_sign;

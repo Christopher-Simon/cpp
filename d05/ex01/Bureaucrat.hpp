@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:54:40 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 16:21:38 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 12:36:13 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class Bureaucrat
 		Bureaucrat(Bureaucrat const & raw);
 		~Bureaucrat();
 		Bureaucrat & operator=(Bureaucrat const & rhs);
-		std::string	getName() const;
+		const std::string	getName() const;
 		int			getGrade() const;
 		void		incrGrade();
 		void		decrGrade();

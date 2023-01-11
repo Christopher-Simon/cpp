@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:48:42 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/14 11:16:57 by christopher      ###   ########.fr       */
+/*   Updated: 2023/01/10 15:48:46 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,40 +104,39 @@ const char* AForm::GradeTooLowException::what() const throw()
 	return ("Grade is too low.");
 }
 
+const char* AForm::IsAlreadySigned::what() const throw()
+{
+	return ("Is already signed.");
+}
+
 const char* AForm::IsNotSigned::what() const throw()
 {
-	return ("The form is not signed");
+	return ("The form is not signed.");
 }
 //************FONCTIONS************//
 
 
 void		AForm::beSigned(Bureaucrat & him) {
 	if (this->getSigned())
-		std::cout << YELLOW << this->_name << " is already signed "  << RESET << std::endl;
-	if (him.getGrade() > this->getGradeSign()) {
-			std::cout << RED << him.getName() << " couldn't sign " << this->_name;
-			std::cout << " because his GradeSign is too low" RESET << std::endl;
-		return ;
-	}
+		throw (IsAlreadySigned());
+	if (him.getGrade() > this->getGradeSign()) 
+		throw (GradeTooLowException());
 	this->_signed = true;
 	std::cout << GREEN << him.getName() << " signed " << this->_name << RESET << std::endl;
 }
 
-void	AForm::exec(void){
+void	AForm::exec(void) const {
 	std::cout << this->getName() << " is not in the right place" << std::endl;
 }
 
-void	AForm::execute(Bureaucrat const & executor) {
-	if (this->getSigned())
+void	AForm::execute(Bureaucrat const & executor) const {
+	if (!this->getSigned())
+		throw(IsNotSigned());
+	if (executor.getGrade() <= this->getGradeExec())
 	{
-		if (executor.getGrade() <= this->getGradeExec())
-		{
-			std::cout << GREEN << executor.getName() << " executed " << this->getName() << RESET << std::endl;
-			this->exec();
-		}
-		else
-			throw(GradeTooLowException());
+		std::cout << GREEN << executor.getName() << " executed " << this->getName() << RESET << std::endl;
+		this->exec();
 	}
 	else
-		throw(IsNotSigned());
+		throw(GradeTooLowException());
 }
