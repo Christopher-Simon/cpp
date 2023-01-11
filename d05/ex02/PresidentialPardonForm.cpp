@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:58:48 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 18:51:38 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 14:34:51 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ PresidentialPardonForm & PPF::operator=(PresidentialPardonForm const & rhs)
 
 //****************EXCEPTIONS*****************//
 
-void	PPF::exec(void) {
+void	PPF::exec(void) const {
 	std::cout << this->getTarget() << " is Pardonned" << std::endl;
 }

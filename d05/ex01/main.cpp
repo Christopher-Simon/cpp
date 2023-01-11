@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:23:59 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 16:20:36 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:44:53 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,23 @@ int	main(void)
 			Form	Test;
 			std::cout << Test << std::endl;
 		}
-		catch (Form::GradeTooHighException & e)
+		catch (Form::FormExceptions & e)
 		{
 			std::cerr << RED << e.what() << RESET << std::endl;
 		}
-		catch (Form::GradeTooLowException & e)
+	}
+		std::cout << std::endl << BLUE << "Basic test Form copy" << RESET << std::endl;
+	{
+		try {
+			Form	Test("Test",50,49);
+			std::cout << Test << std::endl;
+			Form	copy(Test);
+			std::cout << copy << std::endl;
+			Form	equal;
+			equal = copy;
+			std::cout << equal << std::endl;
+		}
+		catch (Form::FormExceptions & e)
 		{
 			std::cerr << RED << e.what() << RESET << std::endl;
 		}
@@ -38,11 +50,7 @@ int	main(void)
 				Form	Test("test", 0, 100);
 				std::cout << Test << std::endl;
 			}
-			catch (Form::GradeTooHighException & e)
-			{
-				std::cerr << RED << e.what() << RESET << std::endl;
-			}
-			catch (Form::GradeTooLowException & e)
+			catch (Form::FormExceptions & e)
 			{
 				std::cerr << RED << e.what() << RESET << std::endl;
 			}
@@ -53,11 +61,7 @@ int	main(void)
 				Form	Test("test", 100, 0);
 				std::cout << Test << std::endl;
 			}
-			catch (Form::GradeTooHighException & e)
-			{
-				std::cerr << RED << e.what() << RESET << std::endl;
-			}
-			catch (Form::GradeTooLowException & e)
+			catch (Form::FormExceptions & e)
 			{
 				std::cerr << RED << e.what() << RESET << std::endl;
 			}
@@ -68,11 +72,7 @@ int	main(void)
 				Form	Test("test", 151, 1);
 				std::cout << Test << std::endl;
 			}
-			catch (Form::GradeTooHighException & e)
-			{
-				std::cerr << RED << e.what() << RESET << std::endl;
-			}
-			catch (Form::GradeTooLowException & e)
+			catch (Form::FormExceptions & e)
 			{
 				std::cerr << RED << e.what() << RESET << std::endl;
 			}
@@ -83,11 +83,7 @@ int	main(void)
 				Form	Test("test", 1, 151);
 				std::cout << Test << std::endl;
 			}
-			catch (Form::GradeTooHighException & e)
-			{
-				std::cerr << RED << e.what() << RESET << std::endl;
-			}
-			catch (Form::GradeTooLowException & e)
+			catch (Form::FormExceptions & e)
 			{
 				std::cerr << RED << e.what() << RESET << std::endl;
 			}
@@ -99,6 +95,7 @@ int	main(void)
 			Bureaucrat John("John", 50);
 			Bureaucrat Bob("Bob", 150);
 			Form	Test("Test", 50, 50);
+
 			std::cout << Test << std::endl;
 			std::cout << John << std::endl;
 			Test.beSigned(John);
@@ -107,11 +104,7 @@ int	main(void)
 			Test.beSigned(Bob);
 			std::cout << Test << std::endl;
 		}
-		catch (Form::GradeTooHighException & e)
-		{
-			std::cerr << RED << e.what() << RESET << std::endl;
-		}
-		catch (Form::GradeTooLowException & e)
+		catch (Form::FormExceptions & e)
 		{
 			std::cerr << RED << e.what() << RESET << std::endl;
 		}
@@ -121,17 +114,14 @@ int	main(void)
 		try {
 			Bureaucrat John("John", 150);
 			Form	Test("Test", 50, 150);
+
 			std::cout << Test << std::endl;
 			std::cout << John << std::endl;
 			Test.beSigned(John);
 			std::cout << Test << std::endl;
 			std::cout << Test << std::endl;
 		}
-		catch (Form::GradeTooHighException & e)
-		{
-			std::cerr << RED << e.what() << RESET << std::endl;
-		}
-		catch (Form::GradeTooLowException & e)
+		catch (Form::FormExceptions & e)
 		{
 			std::cerr << RED << e.what() << RESET << std::endl;
 		}

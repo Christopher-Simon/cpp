@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:58:48 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/14 11:17:02 by christopher      ###   ########.fr       */
+/*   Updated: 2023/01/10 14:34:51 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ PresidentialPardonForm & PPF::operator=(PresidentialPardonForm const & rhs)
 {
 	if (this != &rhs) {
 		this->setSigned(rhs.getSigned());
-		// *this->AForm::operator=(rhs) ;
-
 	}
 	return (*this);
 }
 
 //****************EXCEPTIONS*****************//
 
-void	PPF::exec(void) {
+void	PPF::exec(void) const {
 	std::cout << this->getTarget() << " is Pardonned" << std::endl;
 }

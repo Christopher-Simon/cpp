@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 11:17:39 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 19:30:11 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 14:01:38 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ ShrubberyCreationForm	& ShrubberyCreationForm::operator=(ShrubberyCreationForm c
 	return (*this);
 }
 
-void	ShrubberyCreationForm::exec(void) {
+void	ShrubberyCreationForm::exec(void) const {
 	std::cout << "* ShrubberyCreation is happening *" << std::endl;
 	std::ofstream	ofs;
 	std::string		file;
@@ -49,6 +49,8 @@ void	ShrubberyCreationForm::exec(void) {
 	file = this->_target;
 	file += "_shrubbery";
 	ofs.open(file.c_str());
+	if (ofs.fail())
+		return ;
 	tree = TREE;
 	ofs << tree;
 	ofs.close();

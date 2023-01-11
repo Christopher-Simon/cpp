@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 19:33:48 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/14 15:32:49 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:49:24 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,10 @@ AForm *  Intern::makeForm(std::string name, std::string target){
 		if (!sale[i].compare(name))
 		{	
 			ptr = (this->*f[i])(target);
+			std::cout << "Intern creates  " << name << std::endl; 
 			return (ptr);
 		}
 	}
-	std::cout << "Wrong level" << std::endl;
+	std::cerr << RED << name << " Form doesn't exist" << RESET << std::endl;
 	return (NULL);
 }

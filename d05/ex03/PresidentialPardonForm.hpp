@@ -6,7 +6,7 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 11:15:22 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 18:43:02 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 14:02:58 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm(PresidentialPardonForm const & raw);
 		~PresidentialPardonForm();
 		PresidentialPardonForm & operator=(PresidentialPardonForm const & rhs);
-		void	exec(void);
 	private:
+		void	exec(void) const;
 };
 
 #endif

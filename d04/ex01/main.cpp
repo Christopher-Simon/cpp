@@ -50,11 +50,17 @@ int main()
 		dog->setIdea(0, "Os");
 		std::cout << "Idee de dog  : " << dog->getIdea(0) << std::endl;
 		std::cout << "Idee de dog3 : " << dog3->getIdea(0) << std::endl;
+		std::cout << PURPLE << "______Deep Copy changement de scope______" << RESET << std::endl;
+		{
+			Dog	tmp = *dog;
+			std::cout << "Idee de tmp : " << tmp.getIdea(0) << std::endl;
+		}
+		std::cout << PURPLE << "______Destruction______" << RESET << std::endl;
 		delete dog;
 		delete dog2;
 		delete dog3;
 	}
-		std::cout << std::endl << std::endl;
+	std::cout << std::endl << std::endl;
 	std::cout << RED << "_____Test des Cat_____" << RESET << std::endl;
 	{
 		Cat* cat = new Cat();
@@ -75,9 +81,29 @@ int main()
 		cat->setIdea(0, "Os");
 		std::cout << "Idee de cat  : " << cat->getIdea(0) << std::endl;
 		std::cout << "Idee de cat3 : " << cat3->getIdea(0) << std::endl;
+		std::cout << PURPLE << "______Deep Copy changement de scope______" << RESET << std::endl;
+		{
+			Cat	tmp = *cat;
+			std::cout << "Idee de tmp : " << tmp.getIdea(0) << std::endl;
+		}
+		std::cout << PURPLE << "______Destruction______" << RESET << std::endl;
 		delete cat;
 		delete cat2;
 		delete cat3;
+	}
+	std::cout << std::endl << std::endl;
+	std::cout << RED << "TEST With same Copy" << RESET << std::endl;
+	{
+		Animal *Same = new Dog();
+
+		*Same = *Same;
+		Same->makeSound();
+		delete Same;
+
+		Same = new Cat();
+		*Same = *Same;
+		Same->makeSound();
+		delete Same;
 	}
 	std::cout << std::endl << std::endl;
 	std::cout << RED << "_____Test du sujet_____" << RESET << std::endl;

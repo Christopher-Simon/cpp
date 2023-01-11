@@ -97,8 +97,9 @@ int main()
 	}
 	std::cout << RED << "_____Test de l'Abstract Class_____" << RESET << std::endl;
 	{
-		std::cout << "Know that the Animal class is abstract, we cannot write :"<< std::endl;
+		std::cout << "Now that the Animal class is abstract, we cannot write :"<< std::endl;
 		std::cout << "Animal	Test;" << std::endl;
+		// Animal Test;git@vogsphere.42paris.fr:vogsphere/intra-uuid-809c168b-02da-4406-b8c4-006f78bdba00-4598379-chsimon
 	}
 	return 0;
 }

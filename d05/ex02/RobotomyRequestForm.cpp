@@ -6,29 +6,33 @@
 /*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:27:43 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/13 19:14:18 by chsimon          ###   ########.fr       */
+/*   Updated: 2023/01/10 14:11:01 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp" 
 #include <cmath>
+#include <cstdlib>
+#include <ctime>
 
 typedef	RobotomyRequestForm RRF;
 
 RRF::RobotomyRequestForm():
 AForm("Default", "Default RobotomyRequest Form", 72, 45)
 {
-	
+	std::srand(std::time(NULL));
 }
 
 RRF::RobotomyRequestForm(std::string target):
 AForm(target, "RobotomyRequest Form", 72, 45)
 {
+	std::srand(std::time(NULL));
 }
 
 RRF::RobotomyRequestForm(RobotomyRequestForm const & raw):
 AForm(raw._target, raw.getName(), raw.getGradeSign(), raw.getGradeExec())
 {
+	std::srand(std::time(NULL));
 	*this = raw;
 }
 
@@ -51,9 +55,10 @@ RobotomyRequestForm & RRF::operator=(RobotomyRequestForm const & rhs)
 
 //****************EXCEPTIONS*****************//
 
-void	RRF::exec(void) {
+void	RRF::exec(void) const {
 	std::cout << "* makes some drilling noise *" << std::endl;
-	int	a = rand() % 2; 
+
+	int	a = std::rand() % 2; 
 	if (a)
 		std::cout << GREEN << this->getTarget() << " has been robotomised" << RESET << std::endl;
 	else

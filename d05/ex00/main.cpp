@@ -33,7 +33,7 @@ int	main(void)
 			std::cerr << RED << e.what() << RESET << std::endl;
 		}
 	}
-	std::cout << std::endl << BLUE << "Failure John" << RESET << std::endl;
+	std::cout << std::endl << BLUE << "Failure John High (0)" << RESET << std::endl;
 	{
 		try {
 			Bureaucrat	Bob;
@@ -50,15 +50,32 @@ int	main(void)
 			std::cerr << RED << e.what() << RESET << std::endl;
 		}
 	}
+	std::cout << std::endl << BLUE << "Failure John Low (151)" << RESET << std::endl;
+	{
+		try {
+			Bureaucrat	Bob;
+			Bureaucrat	John("John", 151);
+			std::cout << John << std::endl;
+			std::cout << Bob << std::endl;
+		}
+		catch (Bureaucrat::GradeTooHighException & e)
+		{
+			std::cerr << RED << e.what() << RESET << std::endl;
+		}
+		catch (Bureaucrat::GradeTooLowException & e)
+		{
+			std::cerr << RED << e.what() << RESET << std::endl;
+		}
+	}
 	std::cout << std::endl << BLUE << "Correct increment and decrement" << RESET << std::endl;
 	{
 		try {
 			Bureaucrat	Bob("Bob", 3);
-			std::cout << Bob << std::endl;
+			std::cout << "Base " << Bob << std::endl;
 			Bob.incrGrade();
-			std::cout << Bob << std::endl;
+			std::cout << "After incr " << Bob << std::endl;
 			Bob.decrGrade();
-			std::cout << Bob << std::endl;
+			std::cout << "After decr " << Bob << std::endl;
 		}
 		catch (Bureaucrat::GradeTooHighException & e)
 		{
@@ -73,11 +90,11 @@ int	main(void)
 	{
 		try {
 			Bureaucrat	Bob("Bob", 150);
-			std::cout << Bob << std::endl;
+			std::cout << "Base " << Bob << std::endl;
 			Bob.decrGrade();
-			std::cout << Bob << std::endl;
+			std::cout << "After decr " << Bob << std::endl;
 			Bob.incrGrade();
-			std::cout << Bob << std::endl;
+			std::cout << "After incr " << Bob << std::endl;
 		}
 		catch (Bureaucrat::GradeTooHighException & e)
 		{
