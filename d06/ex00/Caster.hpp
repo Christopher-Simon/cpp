@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Caster.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christopher <christopher@student.42.fr>    +#+  +:+       +#+        */
+/*   By: chsimon <chsimon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:51:08 by chsimon           #+#    #+#             */
-/*   Updated: 2022/12/30 20:59:26 by christopher      ###   ########.fr       */
+/*   Updated: 2023/01/11 17:21:50 by chsimon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CASTER_HPP
 
 #include <iostream>
+#include <cmath>
 #include <exception>
 #include <string>
 #include <cstdlib>
@@ -29,12 +30,16 @@ class Caster
 		Caster & operator=(Caster const & rhs);
 
 	private:
+		bool		_checker(std::string res);
+		void		fill_result();
 		bool		_validInput();
 		void		_cases();
 		void		_castChar();
 		void		_castInt();
 		void		_castFloat();
 		void		_castDouble();
+		void		_print();
+		std::string	_result[4];
 		std::string _value;
 		bool		_gotDot;
 		bool		_gotF;
