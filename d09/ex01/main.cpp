@@ -74,7 +74,7 @@ int	main(int argc, char **argv)
 		std::cout << "wrong number of arguments" << std::endl;
 		return (1);
 	}
-	std::string		input(argv[1]);
+	std::string	input(argv[1]);
 	try 
 	{
 		RPN	res(input);

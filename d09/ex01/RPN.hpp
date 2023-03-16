@@ -35,7 +35,6 @@ class RPN
 	private:
 		std::stack<int>	_calcu;
 		void _calculator(std::stack<int> & _calcu, char ope);
-		
 
 };
 
