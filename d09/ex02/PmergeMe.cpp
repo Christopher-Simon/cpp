@@ -117,14 +117,78 @@ void	printPair(std::list<std::pair<int,int> > pair)
 	}
 }
 
-void	sortPair(std::list<std::pair<int,int> > pair)
+void	sortInPair(std::list<std::pair<int,int> > & pair)
 {
-	
+	for (std::list<std::pair<int,int> >::iterator it = pair.begin();
+	it != pair.end();
+	++it
+	)
+	{
+		if (it->first < it->second || it->second == -1)
+			std::swap(it->first, it->second);
+	}
+}
+
+void sortPair(std::list<std::pair<int,int> > & pair, std::list<int> & S)
+{
+	for (std::list<std::pair<int,int> >::iterator it = pair.begin();
+	it != pair.end();
+	++it
+	)
+	{
+		if (it->first != -1)
+			S.push_back(it->first);
+	}
+	S.sort();
+	for (std::list<std::pair<int,int> >::iterator it = pair.begin();
+	it != pair.end();
+	++it
+	)
+	{
+		if (S.front() == it->first)
+		{
+			S.push_front(it->second);
+			pair.erase(it);
+			break;
+		}
+	}
+}
+
+void	binaryInsert(std::list<int> & S,
+	int value)
+{
+	int	L(0);
+	int	R = S.size();
+	int m = (L + R) / 2;
+	std::list<int>::iterator it = S.begin();
+
+	std::cout << "size = "	<< S.size() << std::endl;
+	std::cout << "value = "	<< value << std::endl;
+	std::cout << "m = "	<< m << std::endl;
+	std::list<int>::iterator copy = it;
+
+	std::cout << "analysed zone " << std::endl;
+	for (int i = L;
+	i < R;
+	i++
+	)
+	{
+		std::cout << *copy++ << " ";
+	}
+
+	std::cout << std::endl;
+
+}
+
+void	binaryInsertInS(std::list<std::pair<int,int> > & pair, std::list<int> & S)
+{
+	binaryInsert(S, pair.front().second);
 }
 
 void	PmergeMe::listSortPair(std::list<int> & X)
 {
 	std::list<std::pair<int,int> > pair;
+	std::list<int> S;
 	std::list<int>::iterator prev;
 
 	for (std::list<int>::iterator it = X.begin();
@@ -142,12 +206,13 @@ void	PmergeMe::listSortPair(std::list<int> & X)
 		}
 	}
 	printPair(pair);
-	for (std::list<std::pair<int,int> >::iterator it = pair.begin();
-	it != pair.end();
-	++it
-	)
-	{
-		std::cout << "[" << it->first << ", " << it->second << "]" << std::endl;
-	}
-
+	sortInPair(pair);
+	std::cout << "SortInPair done :" << std::endl;
+	printPair(pair);
+	sortPair(pair, S);
+	std::cout << "SortPair done :" << std::endl;
+	printPair(pair);
+	printList(S);
+	std::cout << "Binary insert :" << std::endl;
+	binaryInsertInS(pair, S);
 }
