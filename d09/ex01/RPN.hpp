@@ -17,6 +17,8 @@
 #define PURPLE "\033[35m"
 #define RESET "\033[0m"
 
+typedef std::stack<int, std::list<int> > t_stack; 
+
 class RPN 
 {
 	public:
@@ -33,8 +35,8 @@ class RPN
 		};
 
 	private:
-		std::stack<int>	_calcu;
-		void _calculator(std::stack<int> & _calcu, char ope);
+		t_stack	_calcu;
+		void _calculator(t_stack & _calcu, char ope);
 
 };
 

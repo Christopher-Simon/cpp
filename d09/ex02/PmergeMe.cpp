@@ -6,14 +6,31 @@ PmergeMe::PmergeMe()
 	throw (PmergeMeException());
 }
 
-PmergeMe::PmergeMe(char *input)
+PmergeMe::PmergeMe(char **input, int argc)
 {
-	std::list<int> X;
+	std::deque<int> Xd;
+	std::vector<int> Xv;
 
-	fillList(input, X);
-	printList(X);
-	checkDouble(X);
-	listSortPair(X);
+	fill(input, Xd, argc);
+	fill(input, Xv, argc);
+	checkDouble(Xd);
+	std::cout << "Before: ";
+	if (Xd.size() <= 5)
+		print(Xd);
+	else
+		print(Xd, 5);
+	clock_t start = clock();
+	SortPair(Xd);
+	clock_t end = clock();
+	double time = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+	std::cout << "Time to process a range of : " << Xd.size() << " elements with std::deque : "\
+	<< time << " us" << std::endl;
+	start = clock();
+	SortPair(Xv);
+	end = clock();
+	time = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+	std::cout << "Time to process a range of : " << Xd.size() << " elements with std::vector : "\
+	<< time << " us" << std::endl;
 }
 
 PmergeMe::PmergeMe(PmergeMe const & raw)
@@ -47,32 +64,37 @@ const char *	PmergeMe::PmergeMeException::what() const throw()
 
 //*****************FONCTIONS LIST*****************//
 
-void	PmergeMe::fillList(char *input, std::list<int> & X)
+void	PmergeMe::fill(char **input, std::deque<int> & X, int argc)
 {
-	char * pEND;
-
-	for (
-		long i = std::strtod(input, &pEND);
-		input != pEND;
-		i =  std::strtod(input, &pEND)
-	)
+	for (int i = 0; i < argc; i++)
 	{
-		input = pEND;
-		if (errno == ERANGE || 
-			i < 0 ||
-			i > 2147483647
-		)
+		int res = std::atoi(input[i]);
+		if (res < 0)
 		{
 			std::cout << "range error" << std::endl;
 			throw (PmergeMeException());
 		}
-		X.push_back(i);
+		X.push_back(res);
 	}
 }
 
-void	PmergeMe::printList(std::list<int> X)
+void	PmergeMe::fill(char **input, std::vector<int> & X, int argc)
 {
-	for (std::list<int>::iterator it = X.begin();
+	for (int i = 0; i < argc; i++)
+	{
+		int res = std::atoi(input[i]);
+		if (res < 0)
+		{
+			std::cout << "range error" << std::endl;
+			throw (PmergeMeException());
+		}
+		X.push_back(res);
+	}
+}
+
+void	PmergeMe::print(std::deque<int> X)
+{
+	for (std::deque<int>::iterator it = X.begin();
 		it != X.end();
 		++it
 	)
@@ -82,14 +104,64 @@ void	PmergeMe::printList(std::list<int> X)
 	std::cout << std::endl;
 }
 
-void	PmergeMe::checkDouble(std::list<int> X)
+void	PmergeMe::print(std::vector<int> X)
 {
-	for (std::list<int>::iterator it = X.begin();
+	for (std::vector<int>::iterator it = X.begin();
 		it != X.end();
 		++it
 	)
 	{
-		std::list<int>::iterator tmp = it;
+		std::cout << *it << ' ';
+	}
+	std::cout << std::endl;
+}
+
+void	PmergeMe::print(std::deque<int> X, int flag)
+{
+	int i(0);
+	for (std::deque<int>::iterator it = X.begin();
+		it != X.end();
+		++it
+	)
+	{
+		i++;
+		if (i == flag)
+		{
+			std::cout << "[...]"; 
+			break ;
+		}
+		std::cout << *it << ' ';
+	}
+	std::cout << std::endl;
+}
+
+void	PmergeMe::print(std::vector<int> X, int flag)
+{
+	int i(0);
+	for (std::vector<int>::iterator it = X.begin();
+		it != X.end();
+		++it
+	)
+	{
+		i++;
+		if (i == flag)
+		{
+			std::cout << "[...]"; 
+			break ;
+		}
+		std::cout << *it << ' ';
+	}
+	std::cout << std::endl;
+}
+
+void	PmergeMe::checkDouble(std::deque<int> X)
+{
+	for (std::deque<int>::iterator it = X.begin();
+		it != X.end();
+		++it
+	)
+	{
+		std::deque<int>::iterator tmp = it;
 		tmp++;
 		for (;
 			tmp != X.end();
@@ -106,9 +178,33 @@ void	PmergeMe::checkDouble(std::list<int> X)
 	std::cout << std::endl;
 }
 
-void	printPair(std::list<std::pair<int,int> > pair)
+void	PmergeMe::checkDouble(std::vector<int> X)
 {
-	for (std::list<std::pair<int,int> >::iterator it = pair.begin();
+	for (std::vector<int>::iterator it = X.begin();
+		it != X.end();
+		++it
+	)
+	{
+		std::vector<int>::iterator tmp = it;
+		tmp++;
+		for (;
+			tmp != X.end();
+			++tmp
+		)
+		{
+			if (*tmp == *it)
+			{
+				std::cout << "Duplicates in the input" << std::endl;
+				throw (PmergeMeException());
+			}
+		}
+	}
+	std::cout << std::endl;
+}
+
+void	printPair(std::deque<std::pair<int,int> > pair)
+{
+	for (std::deque<std::pair<int,int> >::iterator it = pair.begin();
 		it != pair.end();
 		++it
 	)
@@ -117,9 +213,20 @@ void	printPair(std::list<std::pair<int,int> > pair)
 	}
 }
 
-void	sortInPair(std::list<std::pair<int,int> > & pair)
+void	printPair(std::vector<std::pair<int,int> > pair)
 {
-	for (std::list<std::pair<int,int> >::iterator it = pair.begin();
+	for (std::vector<std::pair<int,int> >::iterator it = pair.begin();
+		it != pair.end();
+		++it
+	)
+	{
+		std::cout << "[" << it->first << ", " << it->second << "]" << std::endl;
+	}
+}
+
+void	sortInPair(std::deque<std::pair<int,int> > & pair)
+{
+	for (std::deque<std::pair<int,int> >::iterator it = pair.begin();
 	it != pair.end();
 	++it
 	)
@@ -129,9 +236,21 @@ void	sortInPair(std::list<std::pair<int,int> > & pair)
 	}
 }
 
-void sortPair(std::list<std::pair<int,int> > & pair, std::list<int> & S)
+void	sortInPair(std::vector<std::pair<int,int> > & pair)
 {
-	for (std::list<std::pair<int,int> >::iterator it = pair.begin();
+	for (std::vector<std::pair<int,int> >::iterator it = pair.begin();
+	it != pair.end();
+	++it
+	)
+	{
+		if (it->first < it->second || it->second == -1)
+			std::swap(it->first, it->second);
+	}
+}
+
+void sortPair(std::deque<std::pair<int,int> > & pair, std::deque<int> & S)
+{
+	for (std::deque<std::pair<int,int> >::iterator it = pair.begin();
 	it != pair.end();
 	++it
 	)
@@ -139,8 +258,8 @@ void sortPair(std::list<std::pair<int,int> > & pair, std::list<int> & S)
 		if (it->first != -1)
 			S.push_back(it->first);
 	}
-	S.sort();
-	for (std::list<std::pair<int,int> >::iterator it = pair.begin();
+	std::sort(S.begin(), S.end());
+	for (std::deque<std::pair<int,int> >::iterator it = pair.begin();
 	it != pair.end();
 	++it
 	)
@@ -154,44 +273,263 @@ void sortPair(std::list<std::pair<int,int> > & pair, std::list<int> & S)
 	}
 }
 
-void	binaryInsert(std::list<int> & S,
-	int value)
+void sortPair(std::vector<std::pair<int,int> > & pair, std::vector<int> & S)
 {
-	int	L(0);
-	int	R = S.size();
-	int m = (L + R) / 2;
-	std::list<int>::iterator it = S.begin();
-
-	std::cout << "size = "	<< S.size() << std::endl;
-	std::cout << "value = "	<< value << std::endl;
-	std::cout << "m = "	<< m << std::endl;
-	std::list<int>::iterator copy = it;
-
-	std::cout << "analysed zone " << std::endl;
-	for (int i = L;
-	i < R;
-	i++
+	for (std::vector<std::pair<int,int> >::iterator it = pair.begin();
+	it != pair.end();
+	++it
 	)
 	{
-		std::cout << *copy++ << " ";
+		if (it->first != -1)
+			S.push_back(it->first);
 	}
-
-	std::cout << std::endl;
-
+	std::sort(S.begin(), S.end());
+	for (std::vector<std::pair<int,int> >::iterator it = pair.begin();
+	it != pair.end();
+	++it
+	)
+	{
+		if (S.front() == it->first)
+		{
+			S.insert(S.begin(), it->second);
+			pair.erase(it);
+			break;
+		}
+	}
 }
 
-void	binaryInsertInS(std::list<std::pair<int,int> > & pair, std::list<int> & S)
+void insertAtPos(std::deque<int> & X, int value, int pos)
 {
-	binaryInsert(S, pair.front().second);
+	std::deque<int>::iterator it = X.begin();
+	for (
+		int i = 0;
+		i < pos;
+		i++
+	)
+	{
+		it++;
+	}
+	X.insert(it, value);
 }
 
-void	PmergeMe::listSortPair(std::list<int> & X)
+void insertAtPos(std::vector<int> & X, int value, int pos)
 {
-	std::list<std::pair<int,int> > pair;
-	std::list<int> S;
-	std::list<int>::iterator prev;
+	std::vector<int>::iterator it = X.begin();
+	for (
+		int i = 0;
+		i < pos;
+		i++
+	)
+	{
+		it++;
+	}
+	X.insert(it, value);
+}
 
-	for (std::list<int>::iterator it = X.begin();
+void	binaryInsert(std::deque<int> & S,
+	int value, int binome)
+{
+	int	R(0);
+	if (binome != -1)
+	{
+		for (
+			std::deque<int>::iterator it = S.begin();
+			*it != binome;
+			++it
+		)
+			R++;
+	}
+	else 
+		R = S.size() - 1;
+	int	L(0);
+	int m;
+	std::deque<int>::iterator it = S.begin();
+	std::deque<int>::iterator copy = it;
+
+	if (BINARY_DETAIL)
+	{
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << "value: " << value << " linked to : " << binome << std::endl;
+	}
+	while (L < R)
+	{
+		m = (L + R) / 2;
+		if (BINARY_DETAIL)
+		{
+			std::cout << std::endl;
+			std::cout << "L: " << L << std::endl;
+			std::cout << "R: " << R << std::endl;
+			std::cout << "m : " << m << std::endl;
+			std::cout << "analysed zone " << std::endl;
+		}
+		for (int i = L;
+		i < R;
+		i++
+		)
+		if (BINARY_DETAIL)
+		{
+			std::cout << S[i] << " ";
+			std::cout << std::endl;
+		}
+		if (R - L == 1)
+		{
+			if (S[m] > value)
+			{
+				if (BINARY_DETAIL)
+					std::cout << value << " is before " << S[m] << " pos : " << m << std::endl;
+				insertAtPos(S, value, m);
+			}
+			else
+			{
+				if (BINARY_DETAIL)
+					std::cout << value << " is after " << S[m] << " pos : " << m << std::endl;
+				insertAtPos(S, value, m + 1);
+			}
+			break;
+		}
+		if (S[m] <= value)
+			L = m;
+		else
+			R = m;
+		// getwchar();
+	}
+}
+
+void	binaryInsert(std::vector<int> & S,
+	int value, int binome)
+{
+	int	R(0);
+	if (binome != -1)
+	{
+		for (
+			std::vector<int>::iterator it = S.begin();
+			*it != binome;
+			++it
+		)
+			R++;
+	}
+	else 
+		R = S.size() - 1;
+	int	L(0);
+	int m;
+
+	if (BINARY_DETAIL)
+	{
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << "value: " << value << " linked to : " << binome << std::endl;
+	}
+	while (L < R)
+	{
+		m = (L + R) / 2;
+		if (BINARY_DETAIL)
+		{
+			std::cout << std::endl;
+			std::cout << "L: " << L << std::endl;
+			std::cout << "R: " << R << std::endl;
+			std::cout << "m : " << m << std::endl;
+			std::cout << "analysed zone " << std::endl;
+		}
+		for (int i = L;
+		i < R;
+		i++
+		)
+		if (BINARY_DETAIL)
+		{
+			std::cout << S[i] << " ";
+			std::cout << std::endl;
+		}
+		if (R - L == 1)
+		{
+			if (S[m] > value)
+			{
+				if (BINARY_DETAIL)
+					std::cout << value << " is before " << S[m] << " pos : " << m << std::endl;
+				insertAtPos(S, value, m);
+			}
+			else
+			{
+				if (BINARY_DETAIL)
+					std::cout << value << " is after " << S[m] << " pos : " << m << std::endl;
+				insertAtPos(S, value, m + 1);
+			}
+			break;
+		}
+		if (S[m] <= value)
+			L = m;
+		else
+			R = m;
+		// getwchar();
+	}
+}
+
+void	binaryInsertInS(std::deque<std::pair<int,int> > & pair, std::deque<int> & S)
+{
+	for (std::deque<std::pair<int,int> >::iterator it = pair.begin();
+		it != pair.end();
+		++it
+	)
+		binaryInsert(S, it->second, it->first);
+}
+
+void	binaryInsertInS(std::vector<std::pair<int,int> > & pair, std::vector<int> & S)
+{
+	for (std::vector<std::pair<int,int> >::iterator it = pair.begin();
+		it != pair.end();
+		++it
+	)
+		binaryInsert(S, it->second, it->first);
+}
+
+bool isSorted(std::deque<int> S)
+{
+	int cmp(0);
+
+	for (
+		std::deque<int>::iterator it = S.begin();
+		it != S.end();
+		++it
+	)
+	{	
+		if (cmp > *it)
+			return (false);
+		cmp = *it;
+	}
+	return (true);
+}
+
+bool isSorted(std::vector<int> S)
+{
+	int cmp(0);
+
+	for (
+		std::vector<int>::iterator it = S.begin();
+		it != S.end();
+		++it
+	)
+	{	
+		if (cmp > *it)
+			return (false);
+		cmp = *it;
+	}
+	return (true);
+}
+
+void	PmergeMe::SortPair(std::deque<int> & X)
+{
+	std::deque<std::pair<int,int> > pair;
+	std::deque<int> S;
+	std::deque<int>::iterator prev;
+
+	if (STEPS)
+	{
+		if (isSorted(X))
+			std::cout << GREEN << "Is sorted" << RESET << std::endl;
+		else
+			std::cout << RED << "Is not sorted" << RESET << std::endl;
+	}
+	for (std::deque<int>::iterator it = X.begin();
 		it != X.end();
 		++it
 	)
@@ -205,14 +543,97 @@ void	PmergeMe::listSortPair(std::list<int> & X)
 			break;
 		}
 	}
-	printPair(pair);
-	sortInPair(pair);
-	std::cout << "SortInPair done :" << std::endl;
-	printPair(pair);
+	if (STEPS)
+	{
+		printPair(pair);
+	}
+		sortInPair(pair);
+	if (STEPS)
+	{
+		std::cout << "SortInPair done :" << std::endl;
+		printPair(pair);
+	}
 	sortPair(pair, S);
-	std::cout << "SortPair done :" << std::endl;
-	printPair(pair);
-	printList(S);
-	std::cout << "Binary insert :" << std::endl;
+	if (STEPS)
+	{
+		std::cout << "SortPair done :" << std::endl;
+		printPair(pair);
+		print(S);
+		std::cout << "Binary insert :" << std::endl;
+	}
 	binaryInsertInS(pair, S);
+	std::cout << "After:  ";
+	if (S.size() <= 5)
+		print(S);
+	else
+		print(S, 5);
+	if (STEPS)
+	{
+		print(S);
+	}
+	if (isSorted(S))
+		std::cout << GREEN << "Is sorted" << RESET << std::endl;
+	else
+		std::cout << RED << "Is not sorted" << RESET << std::endl;
+}
+
+void	PmergeMe::SortPair(std::vector<int> & X)
+{
+	std::vector<std::pair<int,int> > pair;
+	std::vector<int> S;
+	std::vector<int>::iterator prev;
+
+	if (STEPS)
+	{
+		if (isSorted(X))
+			std::cout << GREEN << "Is sorted" << RESET << std::endl;
+		else
+			std::cout << RED << "Is not sorted" << RESET << std::endl;
+	}
+	for (std::vector<int>::iterator it = X.begin();
+		it != X.end();
+		++it
+	)
+	{
+		prev = it;
+		if (++it != X.end())
+			pair.push_back(std::make_pair(*prev, *it));
+		else
+		{
+			pair.push_back(std::make_pair(*prev, -1));
+			break;
+		}
+	}
+	if (STEPS)
+	{
+		printPair(pair);
+	}
+		sortInPair(pair);
+	if (STEPS)
+	{
+		std::cout << "SortInPair done :" << std::endl;
+		printPair(pair);
+	}
+	sortPair(pair, S);
+	if (STEPS)
+	{
+		std::cout << "SortPair done :" << std::endl;
+		printPair(pair);
+		print(S);
+		std::cout << "Binary insert :" << std::endl;
+	}
+	binaryInsertInS(pair, S);
+	std::cout << "After:  ";
+	if (S.size() <= 5)
+		print(S);
+	else
+		print(S, 5);
+	if (STEPS)
+	{
+		print(S);
+	}
+	if (isSorted(S))
+		std::cout << GREEN << "Is sorted" << RESET << std::endl;
+	else
+		std::cout << RED << "Is not sorted" << RESET << std::endl;
 }

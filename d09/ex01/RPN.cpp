@@ -16,7 +16,7 @@ bool	isSign(char c)
 	return (false);
 }
 
-void	RPN::_calculator(std::stack<int> & _calcu, char ope)
+void	RPN::_calculator(t_stack & _calcu, char ope)
 {
 	if (_calcu.size() < 2)
 		throw (RPNExceptions());
@@ -45,7 +45,7 @@ void	RPN::_calculator(std::stack<int> & _calcu, char ope)
 	}
 }
 
-void	printStack(std::stack<int> stk)
+void	printStack(t_stack stk)
 {
 	while (!stk.empty())
 	{

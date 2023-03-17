@@ -1,13 +1,5 @@
 #include "PmergeMe.hpp"
 
-#define GREEN "\033[32m"
-#define RED "\033[31m"
-#define YELLOW "\033[33m"
-#define BLUE "\033[34m"
-#define PURPLE "\033[35m"
-#define RESET "\033[0m"
-
-
 
 void	binarySort(std::list<int> & X)
 {
@@ -75,23 +67,15 @@ void arrangePairs(std::list<int> & X)
 int	main(int argc, char **argv)
 {
 	std::list<int> X;
-	if (argc != 2)
+	if (argc < 2)
 	{
 		std::cout << "wrong number of arguments" << std::endl;
 		return (1);
 	}
 	try {
-		PmergeMe sort(argv[1]);
+		PmergeMe sort(&argv[1], argc - 1);
 	} catch (PmergeMe::PmergeMeException & e) {
 		std::cout << RED << e.what() << RESET << std::endl;
 	}
-	// std::string	input(argv[1]);
-	// fillList(argv[1], X);
-	// printList(X);
-	// listPairSort(X);
-	// arrangePairs(X);
-	// std::list<int> toSort {5, 2, 3, 4, 7, 6};
-	// std::list<int> nums {1, 2, 4, 8, 16};
-
 	return (0);
 }
