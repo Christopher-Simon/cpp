@@ -2,12 +2,13 @@
 #include <fstream>
 #include <map>
 #include "Date.hpp"
+#include "BitcoinExchange.hpp"
 
 int	main(int argc, char **argv)
 {
 	std::ifstream	ifs;
 	std::string		line;
-	std::map<std::string, std::string>		db;
+	std::map<std::string, double> db;
 
 	if (argc != 2)
 	{
@@ -28,6 +29,10 @@ int	main(int argc, char **argv)
 	// 		1);
 	// }
 	// std::string input = argv[1];
-	Date	test(argv[1]);
+	// Date	test(argv[1]);
+	// BitcoinExchange();
+	// char * test ="2012-02-14"; 
+	db[argv[1]] = 3;
+	std::cout << db.begin()->first << " " << db.begin()->second << std::endl; 
 	return (0);
 }

@@ -7,7 +7,6 @@ _day(0),
 _badInput(true),
 _input("0-0-0")
 {
-	// throw (std::invalid_argument("invalid date format"));
 }
 
 bool	parseInput(std::string str)
@@ -77,6 +76,11 @@ Date::~Date()
 Date & Date::operator=(Date const & rhs)
 {
 	if (this != &rhs) {
+		_year = rhs._year;
+		_month = rhs._month;
+		_day = rhs._day;
+		_badInput = rhs._badInput;
+		_input = rhs._input;
 	}
 	return (*this);
 }
