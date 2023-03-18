@@ -23,7 +23,8 @@ class BitcoinExchange
 	private:
 		std::map<std::string, double> _db;
 		void	getDb();
-		void	findValue(std::string & targetDate);
+		void	findValue(std::string & targetDate, double value);
+		void	goToDb(std::string input);
 };
 
 #endif

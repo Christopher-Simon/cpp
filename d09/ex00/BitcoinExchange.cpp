@@ -8,9 +8,8 @@ BitcoinExchange::BitcoinExchange(): _db()
 
 BitcoinExchange::BitcoinExchange(std::string input): _db()
 {
-	(void)input;
 	getDb();
-	findValue(input);
+	goToDb(input);
 }
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const & raw)
@@ -54,7 +53,6 @@ void	BitcoinExchange::getDb()
 	for (; !ifs.eof(); )
 	{
 		std::getline(ifs, line, '\n');
-		// std::cout << "line : " << line << std::endl;
 		date = line.substr(0, line.find(","));
 		value_str = line.substr(line.find(",") + 1);
 		value = std::strtod(value_str.c_str(), NULL);
@@ -63,8 +61,6 @@ void	BitcoinExchange::getDb()
 			ifs.close(),
 			throw std::domain_error("Error file : Negative value : date : " + date + ", value " + value_str);
 		}
-		// std::cout << "date : " << date << std::endl;
-		// std::cout << "value : " << value << std::endl;
 		if (date == "" && value_str == "")
 		{
 			if (!ifs.eof())
@@ -92,60 +88,76 @@ void	BitcoinExchange::getDb()
 	}
 }
 
-void	BitcoinExchange::findValue(std::string & targetDate)
+void	BitcoinExchange::findValue(std::string & targetDate, double value)
 {
 	std::map<std::string, double>::iterator it = _db.lower_bound(targetDate);
 	std::map<std::string, double>::iterator itB = _db.begin();
 	itB++;
 
-	// std::cout << "db.begin() " << _db.begin()->first << std::endl;
-	// std::cout << "it " << it->first << std::endl;
-	// std::cout << "it " << it->first << std::endl;
 	if (targetDate < itB->first)
 		std::cout << "No element less than " << targetDate << " found." << std::endl;
 	else {
 		if (targetDate != it->first)
 			it--;
-		std::cout << "Last element less than " << targetDate << ": " << it->second << std::endl;
-		std::cout << it->first << std::endl;
+		// std::cout << "Last element less than " << targetDate << ": " << it->second << std::endl;
+		// std::cout << it->first << std::endl;
+		std::cout << it->first << " => " << value << " = " << it->second * value << std::endl;
 	}
-	// if (it != _db.begin()) {
-	// 	it--;
-	// 	std::cout << "Last element less than " << targetDate << ": " << it->second << std::endl;
-	// }
-	// else {
-	// 	std::cout << "No element less than " << targetDate << " found." << std::endl;
-	// }
+}
 
+void	BitcoinExchange::goToDb(std::string input)
+{
+	std::ifstream	ifs;
+	std::string		line;
+	std::string		date;
+	std::string		value_str;
+	double		value;
 
-
-
-
-
-
-
-	// std::cout << "date is : " << it->first << std::endl;
-	// if (itB->first == targetDate)
+	ifs.open(input.c_str());
+	if (ifs.fail())
+		throw std::invalid_argument("Error file opening");
+	std::getline(ifs, line, '\n');
+	for (; !ifs.eof(); )
+	{
+		std::getline(ifs, line, '\n');
+		date = line.substr(0, line.find("|") - 1);
+		value_str = line.substr(line.find("|") + 2);
+		value = std::strtod(value_str.c_str(), NULL);
+		if (value < 0 || value > 1000)
+		{
+			std::cerr << "Error in value : " << value << std::endl;
+			continue ; 
+		}
+		if (date == "" && value_str == "")
+		{
+			if (!ifs.eof())
+			{
+				ifs.close(),
+				throw std::domain_error("Error file : empty line");
+			}
+		}
+		else{
+			try {
+				Date	verif(date);
+			} catch (std::exception const & e )
+			{
+				std::cerr  << "Error : wrong date : " << date << std::endl;
+				continue;
+			}
+		}
+		if (!ifs.eof() && ifs.fail())
+		{
+			ifs.close(),
+			throw std::domain_error("Error file");
+		}
+		findValue(date, value);
+	}
+	// try
 	// {
-	// 	std::cout << "Debut" << std::endl;
-	// 	std::cout << "date is : " << it->first << std::endl;
-	// 	std::cout << "The closest value is: " << it->second << std::endl;		
-	// 	return ;
-	// }
-	// it--;
-	// if (it == _db.begin())
-	// {
-	// 	std::cout << "Anterieur : No Value" << it->first << std::endl;
-	// } else if (it != _db.begin()) {
-	// 	// it++;
-	// 	std::cout << "Post" << std::endl;
-	// 	std::cout << "date is : " << it->first << std::endl;
-	// 	std::cout << "The closest value is: " << it->second << std::endl;
-	// }
-	// 	std::cout << "La" << std::endl;
-	// 	std::cout << "date is : " << it->first << std::endl;
-	// 	std ::cout << "The closest value is: " << it->second << std::endl;
-	// } else {
-	// 	std::cout << "No element less than " << targetDate << " found." << std::endl;
+	// 	Date verif(input);
+	// 	findValue(input);
+	// } catch (std::exception const & e ) {
+	// 	std::cerr << e.what() << RESET << std::endl;
+	// 	e.what();
 	// }
 }
