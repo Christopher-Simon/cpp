@@ -5,7 +5,8 @@ _year(0),
 _month(0),
 _day(0),
 _badInput(true),
-_input("0-0-0")
+_input("0-0-0"),
+_error("nothing")
 {
 }
 
@@ -26,36 +27,37 @@ bool	parseInput(std::string str)
 	return (true);
 }
 
-Date::Date(char * input):
+Date::Date(std::string input):
 _badInput(false),
-_input(input)
+_input(input),
+_error("Error in file : wrong date : " + input)
 {
 	char * endP;
-	(void)_year;
-	(void)_month;
-	(void)_day;
 	if (parseInput(_input) == false)
 	{
 		_badInput = true;
-		std::cout << RED << "Bad input" << RESET << std::endl;
+		// std::cout << RED << "Bad input" << RESET << std::endl;
+		throw (std::invalid_argument(_error));
 	}
-	_year = strtod(input, &endP);
+	_year = strtod(input.c_str(), &endP);
 	input = endP + 1;
-	std::cout << "_year : " << _year << std::endl;
-	_month = strtod(input, &endP);
+	// std::cout << "_year : " << _year << std::endl;
+	_month = strtod(input.c_str(), &endP);
 	input = endP + 1;
-	std::cout << "_month : " << _month << std::endl;
-	_day = strtod(input, &endP);
-	std::cout << "_day : " << _day << std::endl;
+	// std::cout << "_month : " << _month << std::endl;
+	_day = strtod(input.c_str(), &endP);
+	// std::cout << "_day : " << _day << std::endl;
 	if (_year < 0 || _month <= 0 || _month > 12 || _day <= 0 )
 	{
 		_badInput = true;
-		std::cout << RED << "Bad input" << RESET << std::endl;
+		// std::cout << RED << "Bad input" << RESET << std::endl;
+		throw (std::invalid_argument(_error));
 	}
 	if (monthCheck() == false)
 	{
 		_badInput = true;
-		std::cout << RED << "Bad input" << RESET << std::endl;
+		// std::cout << RED << "Bad input" << RESET << std::endl;
+		throw (std::invalid_argument(_error));
 	}
 }
 
@@ -68,6 +70,7 @@ Date::Date(Date const & raw)
 Date::~Date()
 {
 }
+
 //******************ACCESSORS*****************//
 
 
@@ -99,18 +102,21 @@ bool Date::monthCheck()
 		{
 			_badInput = true;
 			return (false);
+		throw (std::invalid_argument(_error));
 		}
 		if (_day == 29 
 			&& !(_year % 4 == 0 && (_year % 100 != 0 || _year % 400 == 0)))
 		{
 			_badInput = true;
 			return (false);
+		throw (std::invalid_argument(_error));
 		}
 	case 4:
 		if (_day > 30)
 		{
 			_badInput = true;
 			return (false);
+		throw (std::invalid_argument(_error));
 		}
 		break;
 	case 6: 
@@ -118,24 +124,28 @@ bool Date::monthCheck()
 		{
 			_badInput = true;
 			return (false);
+		throw (std::invalid_argument(_error));
 		}
 	case 9:
 		if (_day > 30)
 		{
 			_badInput = true;
 			return (false);
+		throw (std::invalid_argument(_error));
 		}
 	case 11:
 		if (_day > 30)
 		{
 			_badInput = true;
 			return (false);
+		throw (std::invalid_argument(_error));
 		}
 	default:
 		if (_day > 31)
 		{
 			_badInput = true;
 			return (false);
+		throw (std::invalid_argument(_error));
 		}
 		break;
 	}

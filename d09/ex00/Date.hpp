@@ -21,7 +21,7 @@ class Date
 {
 	public:
 		Date();
-		Date(char * input);
+		Date(std::string input);
 		Date(Date const & raw);
 		~Date();
 		Date & operator=(Date const & rhs);
@@ -32,6 +32,7 @@ class Date
 		int			_day;
 		bool		_badInput;
 		std::string	_input;
+		std::string	_error;
 		bool		monthCheck();
 };
 

@@ -8,18 +8,22 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <fstream>
 #include "Date.hpp"
 
 class BitcoinExchange 
 {
 	public:
 		BitcoinExchange();
+		BitcoinExchange(std::string input);
 		BitcoinExchange(BitcoinExchange const & raw);
 		~BitcoinExchange();
 		BitcoinExchange & operator=(BitcoinExchange const & rhs);
 
 	private:
-		std::map<Date, double> _db;
+		std::map<std::string, double> _db;
+		void	getDb();
+		void	findValue(std::string & targetDate);
 };
 
 #endif
