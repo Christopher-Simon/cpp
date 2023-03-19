@@ -104,13 +104,14 @@ bool Date::monthCheck()
 			return (false);
 		throw (std::invalid_argument(_error));
 		}
-		if (_day == 29 
+		else if (_day == 29 
 			&& !(_year % 4 == 0 && (_year % 100 != 0 || _year % 400 == 0)))
 		{
 			_badInput = true;
 			return (false);
 		throw (std::invalid_argument(_error));
 		}
+		// fall through
 	case 4:
 		if (_day > 30)
 		{
@@ -119,6 +120,7 @@ bool Date::monthCheck()
 		throw (std::invalid_argument(_error));
 		}
 		break;
+		// fall through
 	case 6: 
 		if (_day > 30)
 		{
@@ -126,6 +128,7 @@ bool Date::monthCheck()
 			return (false);
 		throw (std::invalid_argument(_error));
 		}
+		// fall through
 	case 9:
 		if (_day > 30)
 		{
@@ -133,6 +136,7 @@ bool Date::monthCheck()
 			return (false);
 		throw (std::invalid_argument(_error));
 		}
+		// fall through
 	case 11:
 		if (_day > 30)
 		{
@@ -140,6 +144,7 @@ bool Date::monthCheck()
 			return (false);
 		throw (std::invalid_argument(_error));
 		}
+		// fall through
 	default:
 		if (_day > 31)
 		{

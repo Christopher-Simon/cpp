@@ -343,8 +343,6 @@ void	binaryInsert(std::deque<int> & S,
 		R = S.size() - 1;
 	int	L(0);
 	int m;
-	std::deque<int>::iterator it = S.begin();
-	std::deque<int>::iterator copy = it;
 
 	if (BINARY_DETAIL)
 	{

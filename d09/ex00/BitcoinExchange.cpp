@@ -48,7 +48,7 @@ void	BitcoinExchange::getDb()
 
 	ifs.open("data.csv");
 	if (ifs.fail())
-		throw std::invalid_argument("Error file opening");
+		throw std::invalid_argument("Error file opening, file : " + std::string("data.csv"));
 	std::getline(ifs, line, '\n');
 	for (; !ifs.eof(); )
 	{
@@ -115,17 +115,25 @@ void	BitcoinExchange::goToDb(std::string input)
 
 	ifs.open(input.c_str());
 	if (ifs.fail())
-		throw std::invalid_argument("Error file opening");
+		throw std::invalid_argument("Error file opening, file : " + input);
 	std::getline(ifs, line, '\n');
 	for (; !ifs.eof(); )
 	{
 		std::getline(ifs, line, '\n');
+		if (line.find("|") == std::string::npos)
+		{
+			std::cerr << RED << "Error : bad input => " << line << RESET << std::endl;
+			continue ; 
+		}
 		date = line.substr(0, line.find("|") - 1);
 		value_str = line.substr(line.find("|") + 2);
 		value = std::strtod(value_str.c_str(), NULL);
-		if (value < 0 || value > 1000)
+		if (value < 0)
 		{
-			std::cerr << "Error in value : " << value << std::endl;
+			std::cerr << RED << "Error: not a positive number : " << value << RESET <<  std::endl;
+			continue ; 
+		} else if (value > 1000) {
+			std::cerr << RED << "Error: too large number : " << value << RESET <<  std::endl;
 			continue ; 
 		}
 		if (date == "" && value_str == "")
@@ -141,7 +149,7 @@ void	BitcoinExchange::goToDb(std::string input)
 				Date	verif(date);
 			} catch (std::exception const & e )
 			{
-				std::cerr  << "Error : wrong date : " << date << std::endl;
+				std::cerr << RED << "Error : bad input => " << line << RESET << std::endl;
 				continue;
 			}
 		}
@@ -152,12 +160,4 @@ void	BitcoinExchange::goToDb(std::string input)
 		}
 		findValue(date, value);
 	}
-	// try
-	// {
-	// 	Date verif(input);
-	// 	findValue(input);
-	// } catch (std::exception const & e ) {
-	// 	std::cerr << e.what() << RESET << std::endl;
-	// 	e.what();
-	// }
 }
