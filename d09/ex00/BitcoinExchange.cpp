@@ -49,6 +49,9 @@ void	BitcoinExchange::getDb()
 	ifs.open("data.csv");
 	if (ifs.fail())
 		throw std::invalid_argument("Error file opening, file : " + std::string("data.csv"));
+	ifs.peek();
+	if (ifs.fail())
+		throw std::invalid_argument("Error file opening, is a directory : " + std::string("data.csv"));
 	std::getline(ifs, line, '\n');
 	for (; !ifs.eof(); )
 	{
@@ -116,6 +119,9 @@ void	BitcoinExchange::goToDb(std::string input)
 	ifs.open(input.c_str());
 	if (ifs.fail())
 		throw std::invalid_argument("Error file opening, file : " + input);
+	ifs.peek();
+	if (ifs.fail())
+		throw std::invalid_argument("Error file opening, is a directory : " + input);
 	std::getline(ifs, line, '\n');
 	for (; !ifs.eof(); )
 	{

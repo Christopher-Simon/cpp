@@ -68,8 +68,19 @@ void	PmergeMe::fill(char **input, std::deque<int> & X, int argc)
 {
 	for (int i = 0; i < argc; i++)
 	{
-		int res = std::atoi(input[i]);
-		if (res < 0)
+		std::string	verif = input[i];
+		for (std::string::iterator it = verif.begin();
+			it != verif.end();
+			++it
+		)
+			if (!std::isdigit(*it))	
+			{
+				std::cout << "Non-Digit in input" << std::endl;
+				throw (PmergeMeException());
+			}
+				
+		long res = std::atol(input[i]);
+		if (res < 0 || res > 2147483647 || verif.length() > 10)
 		{
 			std::cout << "range error" << std::endl;
 			throw (PmergeMeException());
@@ -82,8 +93,9 @@ void	PmergeMe::fill(char **input, std::vector<int> & X, int argc)
 {
 	for (int i = 0; i < argc; i++)
 	{
-		int res = std::atoi(input[i]);
-		if (res < 0)
+		std::string	verif = input[i];
+		long res = std::atol(input[i]);
+		if (res < 0 || res > 2147483647 || verif.length() > 10)
 		{
 			std::cout << "range error" << std::endl;
 			throw (PmergeMeException());
